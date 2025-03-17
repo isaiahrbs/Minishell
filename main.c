@@ -3,19 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 09:47:04 by irobinso          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/03/17 19:18:26 by irobinso         ###   ########.fr       */
-=======
-<<<<<<< HEAD
-/*   Updated: 2025/03/17 19:21:16 by dimatayi         ###   ########.fr       */
-=======
-/*   Updated: 2025/03/17 19:18:26 by irobinso         ###   ########.fr       */
->>>>>>> 2489e1a (stp march)
->>>>>>> 543aed90e3c283ddd2ecc84028048dede5f8598e
+/*   Updated: 2025/03/17 19:43:21 by irobinso         ###   ########.fr       */
 /*                                                                            */
+/* ************************************************************************** */
+
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
@@ -42,14 +36,8 @@ int	main(int argc, char **argv, char **envp)
 		check_if_valid(&data);//* dans parsing file
 		//print_chained_list(data.token);
 		command_list(&data);
-<<<<<<< HEAD
 		//print_chained_list(data.token);
-=======
-<<<<<<< HEAD
-=======
 		//print_chained_list(data.token);
->>>>>>> 2489e1a (stp march)
->>>>>>> 543aed90e3c283ddd2ecc84028048dede5f8598e
 		print_command_list(data.commands);
 		res = executing(&data);
 		/* printf("ENVIRONMENT VARIABLES\n");
