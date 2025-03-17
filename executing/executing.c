@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:57:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/03/17 18:45:43 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/03/17 19:53:20 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int	executing(t_data *data)
 			child(tmp, &prev_pipe_read, fd, data);
 		tmp = parent(&prev_pipe_read, fd, tmp, &child_failed);
 		if (child_failed)
-			return (1);
+			return (0);
 	}
 	return (0);
 }

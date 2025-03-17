@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 09:47:04 by irobinso          #+#    #+#             */
-/*   Updated: 2025/03/17 19:43:21 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/03/17 19:53:56 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int argc, char **argv, char **envp)
 		command_list(&data);
 		//print_chained_list(data.token);
 		//print_chained_list(data.token);
-		print_command_list(data.commands);
+		//print_command_list(data.commands);
 		res = executing(&data);
 		/* printf("ENVIRONMENT VARIABLES\n");
 		print_variable_list(data.env_list);
