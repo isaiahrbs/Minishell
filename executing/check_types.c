@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 01:33:03 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/03/17 18:32:07 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/03/17 23:50:20 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,14 @@ int	is_cmd(t_command *tmp, char **executable, char ***cmd)
 	{
 		*executable = ft_strndup(tmp->value, ft_len(tmp->value, ' '));
 		if (!*executable)
+		{
+			perror("");
 			exit(1);
+		}
 		*cmd = metachar_split(tmp->value);
 		if (!*cmd)
 		{
+			perror("");
 			free(*executable);
 			*executable = NULL;
 			exit(1);

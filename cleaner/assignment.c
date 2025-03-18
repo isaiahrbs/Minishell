@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 10:17:40 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/03/04 04:21:14 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/03/18 05:40:15 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	assign_var(t_data *data)
 		{
 			if (exp)
 			{
-				exp = 0;
 				if (!ft_assign(token_tmp->value, &data->env_list))
 				{
 					token_tmp->value = NULL;
@@ -67,9 +66,17 @@ int	assign_var(t_data *data)
 					return (0);
 				}
 			}
+			free(token_tmp->value);
+			token_tmp->value = NULL;
 		}
-		if (!ft_strncmp(token_tmp->value, "export", 6))
+		if (exp == 1)
+			exp = 0;
+		else if (!ft_strncmp(token_tmp->value, "export", 6))
+		{
+			free(token_tmp->value);
+			token_tmp->value = NULL;
 			exp = 1;
+		}
 		token_tmp = token_tmp->next;
 	}
 	return (1);

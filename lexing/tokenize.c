@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:43:37 by irobinso          #+#    #+#             */
-/*   Updated: 2025/03/16 16:57:43 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/03/18 03:52:26 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,11 @@ int	ft_variable(t_data *data)
 		return (0);
 	}
 	if (!expand(data->token, data->env_list))
+	{
+		//free data->token
+		return (0);
+	}
+	if (!invalid_var(data->token))
 	{
 		//free data->token
 		return (0);

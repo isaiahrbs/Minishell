@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 09:47:04 by irobinso          #+#    #+#             */
-/*   Updated: 2025/03/17 19:53:56 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/03/17 20:21:24 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv, char **envp)
 	data.envp = envp;
 	data.temporary_var = NULL;
 	init_signal_handlers();
-	init_terminal();
+	//init_terminal();
 	if (!ft_env(&data) || !envp || !envp[0])
 		return (1);
 	while (1)

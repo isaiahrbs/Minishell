@@ -6,11 +6,46 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 23:08:41 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/03/05 13:48:41 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/03/18 05:22:14 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+int	invalid_var(t_token *token)
+{
+	int		i;
+	int		j;
+	char	*new;
+	t_token	*tmp;
+
+	new = NULL;
+	tmp = token;
+	while (tmp && (tmp->value))
+	{
+		i = 0;
+		while (tmp->value[i])
+		{
+			if (tmp->value[i] == '$' && !is_single_quote(tmp->value, i))
+			{
+				j = 0;
+				while (tmp->value[i + j] && !is_metachar_value(&tmp->value[i + j]))
+					j++;
+				new = ft_calloc(i + ft_strlen(&tmp->value[i + j]) + 1, sizeof(char));
+				if (!new)
+					return (0);
+				ft_strncat(new, tmp->value, i);
+				ft_strncat(new, &tmp->value[i + j], j);
+				free(tmp->value);
+				tmp->value = new;
+				new = NULL;
+			}
+			i++;
+		}
+		tmp = tmp->next;
+	}
+	return (1);
+}
 
 char	*is_var(char *value, int *index)
 {
@@ -23,17 +58,10 @@ char	*is_var(char *value, int *index)
 		return (NULL);
 	while (value[i] && value[i] != '$')
 		i++;
-	if (value[i] == '\0')
+	if (value[i] == '\0' || is_single_quote(value, i))
 		return (NULL);
-	if (i > 0 && value[i] == '$' && value[i - 1] == 34)
-	{
-		*index = *index + i;
-		var_start = &value[i + 1];
-	}
-	while (value[i] && value[i] != 34)
-		i++;
-	if (value[i] == '\0')
-		return (NULL);
+	*index = *index + i;
+	var_start = &value[i + 1];
 	return (var_start);
 }
 
@@ -41,21 +69,27 @@ char	*search_replace(t_token *tmp, char *old, char *var_start)
 {
 	char	*new;
 	int		i;
+	int		name_len;
+	int		content_len;
+	int		remaining_len;
 
+	name_len = ft_strlen(tmp->name);
+	content_len = ft_strlen(tmp->content);
+	remaining_len = ft_strlen(var_start) - name_len;
 	i = var_start - old;
-	if (ft_strncmp(tmp->name, &old[i], ft_strlen(tmp->name)))
+	if (ft_strncmp(tmp->name, &old[i], name_len))
 		return (old);
-	if (old[i + ft_strlen(tmp->name)] != 34)
+	if (old[i + name_len] != '\0' && old[i + name_len] != ' '
+			&& old[i + name_len] != 34 && old[i + name_len] != '$')
 		return (old);
 	if (!tmp->content)
 		tmp->content = "";
-	new = ft_calloc((ft_len(old, 34) + ft_strlen(tmp->content)
-				+ ft_len2(var_start) + 1), sizeof(char));
+	new = ft_calloc(i + content_len + remaining_len, sizeof(char));
 	if (!new)
 		return (NULL);
-	ft_strncat(new, old, ft_len(old, 34));
-	ft_strncat(new, tmp->content, ft_strlen(tmp->content));
-	ft_strncat(new, var_start + ft_len3(var_start), ft_len2(var_start));
+	ft_strncat(new, old, i - 1);
+	ft_strncat(new, tmp->content, content_len);
+	ft_strncat(new, var_start + name_len, ft_strlen(var_start) - name_len);
 	free(old);
 	return (new);
 }
@@ -71,7 +105,7 @@ int	expand(t_token *token, t_token *var)
 		return (1);
 	while (token)
 	{
-		while (token->value[i])
+		while (token->value && token->value[i])
 		{
 			var_start = is_var(&token->value[i], &i);
 			if (var_start)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_if_valid.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 15:21:49 by irobinso          #+#    #+#             */
-/*   Updated: 2025/03/15 17:22:23 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/03/18 03:00:19 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	check_if_valid(t_data *data)
 		}
 		else if (token->next)
 		{
-			if (is_metachar(token->type) && is_metachar(token->next->type))
+			if (is_metachar_type(token->type) && is_metachar_type(token->next->type))
 			{
 				printf("Error: Invalid prompt.\n");
 				data->activation_key = 0;

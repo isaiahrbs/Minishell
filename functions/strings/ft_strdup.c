@@ -28,6 +28,8 @@ char	*ft_strdup(const char *s1)
 	size_t	len;
 	size_t	i;
 
+	if (!s1)
+		return (NULL);
 	len = ft_strlen(s1);
 	dest = malloc(len + 1);
 	if (dest == NULL)
@@ -48,6 +50,8 @@ char *ft_strndup(char *s1, size_t n)
 	size_t	len;
 	size_t	i;
 
+	if (!s1)
+		return (NULL);
 	len = ft_strlen(s1);
 	if (n < len)
 		len = n;
@@ -69,6 +73,8 @@ int	ft_strncmp(char *s1, char *s2, unsigned int n)
 	unsigned int	i;
 
 	i = 0;
+	if (!s1 || !s2)
+		return (0);
 	while (i < n && (s1[i] != '\0' || s2[i] != '\0'))
 	{
 		if ((unsigned int)s1[i] < (unsigned int)s2[i])

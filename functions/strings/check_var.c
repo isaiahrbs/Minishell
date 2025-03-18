@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:40:43 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/03/01 23:31:51 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/03/18 04:56:14 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	is_assignment(char *s)
 	char	*name_part;
 	int		result;
 
-	if (s == NULL || *s == '\0' || *s != 34 || s[ft_strlen(s) - 1] != 34)
+	if (s == NULL || *s == '\0' || is_single_quote(s, 1))
 		return (0);
 	equal_sign = ft_strchr(s, '=');
 	if (equal_sign == NULL)

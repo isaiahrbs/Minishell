@@ -28,6 +28,7 @@
 
 typedef enum e_type
 {
+	MALLOC_ERROR,
 	WORD,
 	AND,
 	OR,
@@ -82,6 +83,7 @@ typedef struct s_data
 	char		*input;
 	char		**envp;
 	int			activation_key;
+	t_type		error;
 }	t_data;
 
 /* typedef struct s_variable
@@ -129,6 +131,7 @@ char	*ft_strncat(char *dst, const char *src, size_t n);
 int		ft_len(char *s, char c);
 int		ft_len2(char *s);
 int		ft_len3(char *s);
+int		is_single_quote(char *s, int dollar_index);
 int		check_assignment(const char *s);
 int		is_special_char(char c);
 int		get_operator_len(const char *s);
@@ -142,7 +145,7 @@ char	*ft_name(char *s);
 int		ft_assign(char *s, t_token **var);
 char	**real_split(const char *s, char c);
 int		executing(t_data *data);
-int		ft_exec(char *executable, char **cmd, char **envp);
+int		ft_exec(char *executable, char **cmd, t_data *data);
 int		ft_fork(pid_t *pid, int *prev_pipe_read, int *fd);
 int		ft_pipe(t_command *tmp, int *fd);
 void	edit_pipe_fd(int infile, int outfile, int *prev_pipe_read, int *fd);
@@ -153,6 +156,7 @@ int		redirect_in(t_command *tmp, int *infile, char **executable, char ***cmd);
 void	free_double_ptr(char **args);
 void	ft_free(char **executable, char ***cmd);
 void	free_command_list(t_data *data);
+int		invalid_var(t_token *token);
 
 //*----minishell----*//
 
@@ -164,7 +168,8 @@ void	remove_useless_quotes(char *str, int *quote_type);
 int		check_quote_type(char quote, int *first_type);
 void	init_terminal(void);
 void	check_if_valid(t_data *data);
-int		is_metachar(int type);
+int		is_metachar_type(int type);
+int		is_metachar_value(char *s);
 void	command_list(t_data *data);
 
 #endif

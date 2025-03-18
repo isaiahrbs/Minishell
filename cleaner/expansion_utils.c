@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 23:10:10 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/03/04 22:43:44 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/03/18 02:03:26 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,22 @@ int	ft_len(char *s, char c)
 	while (s[i] && s[i] != c)
 		i++;
 	return (i);
+}
+
+int	is_single_quote(char *s, int dollar_index)
+{
+	int	i;
+	int	counter;
+
+	i = 0;
+	counter = 0;
+	while (s[i] && i < dollar_index)
+	{
+		if (s[i] == 39)
+			counter++;
+		i++;
+	}
+	if (counter == 0 || counter % 2 == 0)
+		return (0);
+	return (1);
 }

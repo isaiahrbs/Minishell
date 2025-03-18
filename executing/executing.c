@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:57:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/03/17 19:53:20 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/03/18 05:41:46 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,28 @@ void	ft_free(char **executable, char ***cmd)
 
 int	ft_executable(char **executable, char ***cmd, t_data *data)
 {
-	if (!ft_exec(*executable, *cmd, data->envp))
+	t_token	*env_var;
+
+	env_var = data->env_list;
+	if (!strcmp("env", *executable))
 	{
+		while (env_var && env_var->name && env_var->content)
+		{
+			printf("%s=%s\n", env_var->name, env_var->content);
+			env_var = env_var->next;
+		}
 		ft_free(executable, cmd);
-		exit(1);
+		exit(0);
 	}
-	return (0);
+	if (!ft_exec(*executable, *cmd, data))
+		ft_free(executable, cmd);
+	if (data->error == MALLOC_ERROR)
+		exit(1);
+	printf("command not found\n");
+	exit(0);
 }
 
-int	child(t_command *tmp, int *prev_pipe_read, int *fd, t_data *data	)
+int	child(t_command *tmp, int *prev_pipe_read, int *fd, t_data *data)
 {
 	char	**cmd;
 	char	*executable;
@@ -78,11 +91,7 @@ t_command	*parent(int *prev_pipe_read, int *fd, t_command *tmp, int *child_faile
 		tmp = tmp->next;
 	wait_result = wait(&status);
 	while (wait_result > 0)
-	{
-		if (!WIFEXITED(status) || WEXITSTATUS(status) != 0)
-			*child_failed = 1;
 		wait_result = wait(&status);
-	}
 	return (tmp);
 }
 
@@ -94,9 +103,10 @@ int	executing(t_data *data)
 	pid_t		pid;
 	int			child_failed;
 
+	data->error = NO_TYPE;
 	prev_pipe_read = -1;
 	if (!data->commands)
-		return (1);
+		return (0);
 	tmp = data->commands;
 	while (tmp && tmp->value)
 	{
@@ -107,8 +117,8 @@ int	executing(t_data *data)
 		if (pid == 0)
 			child(tmp, &prev_pipe_read, fd, data);
 		tmp = parent(&prev_pipe_read, fd, tmp, &child_failed);
-		if (child_failed)
-			return (0);
+		/* if (child_failed)
+			return (1); */
 	}
 	return (0);
 }

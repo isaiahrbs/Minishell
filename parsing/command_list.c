@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_list.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 15:16:25 by irobinso          #+#    #+#             */
-/*   Updated: 2025/03/16 17:14:30 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/03/18 03:00:19 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	update_token_types(t_data *data)
 	tok = data->token;
 	while (tok)
 	{
-		if (!is_metachar(tok->type))
+		if (!is_metachar_type(tok->type))
 			tok->type = WORD;
 		tok = tok->next;
 	}
@@ -85,7 +85,7 @@ static t_command	*build_cmd_list(t_data *data)
 	token = data->token;
 	while (token)
 	{
-		if (is_metachar(token->type))
+		if (is_metachar_type(token->type))
 		{
 			node = cmd_new(token->value, token->type);
 			if (!node)
@@ -95,7 +95,7 @@ static t_command	*build_cmd_list(t_data *data)
 		}
 		else
 		{
-			if (!curr || is_metachar(curr->type))
+			if (!curr || is_metachar_type(curr->type))
 			{
 				node = cmd_new(token->value, token->type);
 				if (!node)
