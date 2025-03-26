@@ -84,6 +84,7 @@ typedef struct s_data
 	char		**envp;
 	int			activation_key;
 	t_type		error;
+	int			created_new_env;
 }	t_data;
 
 /* typedef struct s_variable

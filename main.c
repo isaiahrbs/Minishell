@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 09:47:04 by irobinso          #+#    #+#             */
-/*   Updated: 2025/03/17 20:21:24 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/03/26 22:04:21 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,16 @@ int	main(int argc, char **argv, char **envp)
 	//t_token	*token_list_head;
 	//t_env	*env_head;
 
-	if (argc != 1 || !argv[0])
-		return (1);
+	(void)argc;
+	(void)argv;
+	/* if (argc != 1 || !argv[0])
+		return (1); */
 	data.envp = envp;
 	data.temporary_var = NULL;
 	init_signal_handlers();
 	//init_terminal();
-	if (!ft_env(&data) || !envp || !envp[0])
-		return (1);
+	if (!ft_env(&data))		//j'ai enlevé cet verif: !envp || !envp[0]
+		return (1);			//car env -i ./Minishell devrait marcher
 	while (1)
 	{
 		data.input = get_input();
@@ -51,6 +53,8 @@ int	main(int argc, char **argv, char **envp)
 		if (res)	// sortir de la boucle en cas de malloc error
 			break ;
 	}
+	if (data.created_new_env)
+		free_double_ptr(data.envp);	//create a function that frees every variable in t_data
 	free_token_list(&data.env_list);
 	//free_env_list(env_head);
 	return (0);
