@@ -158,6 +158,8 @@ void	free_double_ptr(char **args);
 void	ft_free(char **executable, char ***cmd);
 void	free_command_list(t_data *data);
 int		invalid_var(t_token *token);
+void	free_token(t_token **temp);
+int		unset_var(t_data *data);
 
 //*----minishell----*//
 

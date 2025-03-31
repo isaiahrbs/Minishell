@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:43:37 by irobinso          #+#    #+#             */
-/*   Updated: 2025/03/18 03:52:26 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/03/29 13:21:59 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,11 @@ t_token	*form_token_list(char **token_list)
 
 int	ft_variable(t_data *data)
 {
+	if (!unset_var(data))
+	{
+		//free data->token
+		return (0);
+	}
 	if (!assign_var(data))
 	{
 		//free data->token

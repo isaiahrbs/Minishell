@@ -74,7 +74,7 @@ int	ft_strncmp(char *s1, char *s2, unsigned int n)
 
 	i = 0;
 	if (!s1 || !s2)
-		return (0);
+		return (-2);
 	while (i < n && (s1[i] != '\0' || s2[i] != '\0'))
 	{
 		if ((unsigned int)s1[i] < (unsigned int)s2[i])

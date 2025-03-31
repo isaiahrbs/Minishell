@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 10:17:40 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/03/18 05:40:15 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/03/31 14:01:27 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int	ft_assign(char *s, t_token **var)
 {
 	t_token	*var_tmp;
-	char *name;
-	char *content;
+	char	*name;
+	char	*content;
 
 	name = ft_name(s);
 	if (!name)
