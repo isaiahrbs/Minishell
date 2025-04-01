@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 18:05:40 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/03/31 14:24:22 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/01 11:43:53 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ char	*ft_content(char *s)
 	while (s[i] && s[i] != '=')
 		i++;
 	i++;
+	if (s[i] == 34)
+		i++;
 	while (s[i + j] && s[i + j] != 34)
 		j++;
 	output = ft_calloc(j + 1, sizeof(char));
@@ -93,13 +95,13 @@ int	ft_env(t_data *data)
 	i = 0;
 	data->created_new_env = 0;
 	data->env_list = NULL;
-	if (!getenv("PATH") || !getenv("TERM") || !getenv("PWD"))
-	{
+	//if (!getenv("PATH") || !getenv("TERM") || !getenv("PWD"))
+	//{
 		data->created_new_env = 1;
 		data->envp = create_env();
 		if (!data->envp)
 			return (0);
-	}
+	//}
 	while (data->envp[i])
 	{
 		if (!ft_assign(data->envp[i], &data->env_list))
