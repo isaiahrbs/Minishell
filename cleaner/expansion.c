@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 23:08:41 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/03/18 05:22:14 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/02 01:55:08 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ char	*search_replace(t_token *tmp, char *old, char *var_start)
 	i = var_start - old;
 	if (ft_strncmp(tmp->name, &old[i], name_len))
 		return (old);
-	if (old[i + name_len] != '\0' && old[i + name_len] != ' '
+	/* if (old[i + name_len] != '\0' && old[i + name_len] != ' '
 			&& old[i + name_len] != 34 && old[i + name_len] != '$')
-		return (old);
+		return (old); */
 	if (!tmp->content)
 		tmp->content = "";
 	new = ft_calloc(i + content_len + remaining_len, sizeof(char));
@@ -94,7 +94,7 @@ char	*search_replace(t_token *tmp, char *old, char *var_start)
 	return (new);
 }
 
-int	expand(t_token *token, t_token *var)
+int	expand(t_token *token, t_token *var, t_data *data)
 {
 	t_token	*tmp;
 	char	*var_start;
@@ -107,6 +107,13 @@ int	expand(t_token *token, t_token *var)
 	{
 		while (token->value && token->value[i])
 		{
+			if (!ft_strncmp(token->value, "$?\0", 3))
+			{
+				free(token->value);
+				token->value = ft_itoa(data->exit_code);
+				if (!token->value)
+					return (0);
+			}
 			var_start = is_var(&token->value[i], &i);
 			if (var_start)
 			{
@@ -117,10 +124,7 @@ int	expand(t_token *token, t_token *var)
 						token->value = search_replace
 							(tmp, token->value, var_start);
 					if (!token->value)
-					{
-						//MALLOC ERROR --- free what needs to be freed
 						return (0);
-					}
 					tmp = tmp->next;
 				}
 			}

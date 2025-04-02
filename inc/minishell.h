@@ -85,6 +85,7 @@ typedef struct s_data
 	int			activation_key;
 	t_type		error;
 	int			created_new_env;
+	int			exit_code;
 }	t_data;
 
 /* typedef struct s_variable
@@ -126,12 +127,10 @@ int		ft_isalnum(int c);
 char	*ft_strchr(char *s, int c);
 void	init_type(t_token *token);
 int		assign_var(t_data *data);
-int		expand(t_token *token, t_token *var);
+int		expand(t_token *token, t_token *var, t_data *data);
 void	*ft_calloc(size_t elem, size_t size);
 char	*ft_strncat(char *dst, const char *src, size_t n);
 int		ft_len(char *s, char c);
-int		ft_len2(char *s);
-int		ft_len3(char *s);
 int		is_single_quote(char *s, int dollar_index);
 int		check_assignment(const char *s);
 int		is_special_char(char c);
@@ -160,6 +159,7 @@ void	free_command_list(t_data *data);
 int		invalid_var(t_token *token);
 void	free_token(t_token **temp);
 int		unset_var(t_data *data);
+char	*ft_itoa(int n);
 
 //*----minishell----*//
 

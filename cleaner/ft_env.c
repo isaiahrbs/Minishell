@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 18:05:40 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/01 11:43:53 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/02 00:46:24 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,20 +95,20 @@ int	ft_env(t_data *data)
 	i = 0;
 	data->created_new_env = 0;
 	data->env_list = NULL;
-	//if (!getenv("PATH") || !getenv("TERM") || !getenv("PWD"))
-	//{
+	if (!getenv("PATH") || !getenv("TERM") || !getenv("PWD"))
+	{
 		data->created_new_env = 1;
 		data->envp = create_env();
 		if (!data->envp)
 			return (0);
-	//}
+	}
 	while (data->envp[i])
 	{
 		if (!ft_assign(data->envp[i], &data->env_list))
 		{
-			//free something
-			//free data->envp if data->created_new_env = 1
-			//or create a function that frees every variable in t_data
+			if (data->created_new_env)
+				free_double_ptr(data->envp);
+			free_token_list(&data->env_list);
 			return (0);
 		}
 		i++;

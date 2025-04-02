@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 11:52:51 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/01 11:08:50 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/02 00:02:44 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int unset_var(t_data *data)
 			token_tmp->value = NULL;
 		}
 		else if (token_tmp->value && unset)
-		delete_var(&(data->env_list), token_tmp->value);
+			delete_var(&(data->env_list), token_tmp->value);
 		token_tmp = token_tmp->next;
 	}
 	return (1);

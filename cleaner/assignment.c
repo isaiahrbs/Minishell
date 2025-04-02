@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 10:17:40 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/01 11:39:22 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/02 01:18:12 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	ft_assign(char *s, t_token **var)
 	var_tmp = create_var(name, content);
 	if (!var_tmp)
 	{
+		free(name);
+		free(content);
 		free_token_list(var);
 		return (0);
 	}

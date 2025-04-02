@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:43:37 by irobinso          #+#    #+#             */
-/*   Updated: 2025/03/29 13:21:59 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/02 01:50:45 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,30 +67,15 @@ t_token	*form_token_list(char **token_list)
 int	ft_variable(t_data *data)
 {
 	if (!unset_var(data))
-	{
-		//free data->token
 		return (0);
-	}
 	if (!assign_var(data))
-	{
-		//free data->token
 		return (0);
-	}
-	if (!expand(data->token, data->temporary_var))
-	{
-		//free data->token
+	if (!expand(data->token, data->temporary_var, data))
 		return (0);
-	}
-	if (!expand(data->token, data->env_list))
-	{
-		//free data->token
+	if (!expand(data->token, data->env_list, data))
 		return (0);
-	}
 	if (!invalid_var(data->token))
-	{
-		//free data->token
 		return (0);
-	}
 	return (1);
 }
 
@@ -100,6 +85,7 @@ t_token	*tokenize(t_data *data)
 
 	data->token = NULL;
 	token_list = metachar_split(data->input);
+	free(data->input);
 	if (!token_list)
 		return (NULL);
 	//print_list(token_list);
@@ -108,9 +94,11 @@ t_token	*tokenize(t_data *data)
 	if (!data->token)
 		return (NULL);
 	if (!ft_variable(data))
+	{
+		free_token_list(&data->token);
 		return (NULL);
+	}
 	filter(data->token);//* to remove useless quotes
 	init_token_type(data->token);
-	free(data->input);
 	return (data->token);
 }
