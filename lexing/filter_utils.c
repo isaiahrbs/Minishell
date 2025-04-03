@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filter_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:36:34 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/01 22:07:03 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/03 12:21:44 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	is_fully_quoted(const char *str, int *quote_type)
 	return (1);
 }
 
-static void	remove_outer_quotes(char *str)
+/* static void	remove_outer_quotes(char *str)
 {
 	char	*read;
 	char	*write;
@@ -74,7 +74,7 @@ static void	remove_outer_quotes(char *str)
 			*write++ = *read++;
 	}
 	*write = '\0';
-}
+} */
 
 static void	remove_all_quotes(char *str)
 {
@@ -94,17 +94,20 @@ static void	remove_all_quotes(char *str)
 
 void	remove_useless_quotes(char *str, int *quote_type)
 {
-	int	detected_quote_type;
+    int	detected_quote_type;
 
-	detected_quote_type = 0;
-	if (is_fully_quoted(str, &detected_quote_type))//* si c'est fully entre quotes: "hello"
-	{
-		*quote_type = detected_quote_type;
-		remove_outer_quotes(str);//* jenleve les quotes de coter
-	}
-	else//* si c'est pas que des quotes bah jenleve toute les quotes
-	{
-		*quote_type = 0;
-		remove_all_quotes(str);
-	}
+    detected_quote_type = 0;
+    if (is_fully_quoted(str, &detected_quote_type)) // If fully quoted
+    {
+        *quote_type = detected_quote_type;
+        if (str[1] == '\0') // If the string is empty quotes like ""
+            *str = '\0';    // Remove the quotes entirely
+        else
+            return;         // Keep the outer quotes as they are meaningful
+    }
+    else // If not fully quoted, remove all quotes
+    {
+        *quote_type = 0;
+        remove_all_quotes(str);
+    }
 }
