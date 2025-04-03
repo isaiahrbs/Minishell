@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:36:34 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/03 12:21:44 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/03 12:40:57 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,20 +94,20 @@ static void	remove_all_quotes(char *str)
 
 void	remove_useless_quotes(char *str, int *quote_type)
 {
-    int	detected_quote_type;
+	int	detected_quote_type;
 
-    detected_quote_type = 0;
-    if (is_fully_quoted(str, &detected_quote_type)) // If fully quoted
-    {
-        *quote_type = detected_quote_type;
-        if (str[1] == '\0') // If the string is empty quotes like ""
-            *str = '\0';    // Remove the quotes entirely
-        else
-            return;         // Keep the outer quotes as they are meaningful
-    }
-    else // If not fully quoted, remove all quotes
-    {
-        *quote_type = 0;
-        remove_all_quotes(str);
-    }
+	detected_quote_type = 0;
+	if (is_fully_quoted(str, &detected_quote_type))
+	{
+		*quote_type = detected_quote_type;
+		if (str[1] == '\0')
+			*str = '\0';
+		else
+			return;
+	}
+	else
+	{
+		*quote_type = 0;
+		remove_all_quotes(str);
+	}
 }
