@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:57:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/02 01:39:01 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/05 12:58:37 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,10 @@ void	ft_free(char **executable, char ***cmd)
 
 int	ft_executable(char **executable, char ***cmd, t_data *data)
 {
-	t_token	*env_var;
-
-	env_var = data->env_list;
 	if (!strcmp("env", *executable))
-	{
-		while (env_var && env_var->name && env_var->content)
-		{
-			printf("%s=%s\n", env_var->name, env_var->content);
-			env_var = env_var->next;
-		}
-		ft_free(executable, cmd);
-		exit(0);
-	}
+		ft_env(data, executable, cmd);
+	if (!strcmp("echo", *executable))
+		ft_echo(executable, cmd);
 	if (!ft_exec(*executable, *cmd, data))
 		ft_free(executable, cmd);
 	if (data->error == MALLOC_ERROR)

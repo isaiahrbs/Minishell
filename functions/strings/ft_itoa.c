@@ -1,48 +1,71 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/02 01:10:56 by dimatayi          #+#    #+#             */
+/*   Updated: 2025/04/02 01:11:30 by dimatayi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../inc/minishell.h"
 
-int	numlen(int num)
+static void	change_n(int *n, int *sign, unsigned int *nb)
 {
-	int	len;
-
-	len = 0;
-	if (num == 0)
-		return (1);
-	if (num < 0)
+	if (*n < 0)
 	{
-		len++;
-		num = -num;
+		*sign = 1;
+		*nb = -(*n);
 	}
-	while (num != 0)
+	else
 	{
-		num = num / 10;
-		len++;
+		*nb = *n;
+		*sign = 0;
 	}
-	return (len);
 }
 
-char	*ft_itoa(int nbr)
+static int	ft_digits(unsigned int nb)
 {
-	char	*str;
-	int		len;
-	int		is_negative;
+	int	i;
 
-	len = numlen(nbr);
-	is_negative = (nbr < 0);
-	str = malloc(sizeof(char) * (len + 1));
+	i = 0;
+	if (nb == 0)
+		return (1);
+	while (nb)
+	{
+		nb /= 10;
+		i++;
+	}
+	return (i);
+}
+
+char	*ft_itoa(int n)
+{
+	unsigned int	nb;
+	char			*str;
+	int				digits;
+	int				sign;
+	int				i;
+
+	change_n(&n, &sign, &nb);
+	digits = ft_digits(nb);
+	str = malloc(sizeof(char) * (digits + sign + 1));
 	if (!str)
 		return (NULL);
-	str[len] = '\0';
-	if (nbr == 0)
-		str[0] = '0';
-	if (is_negative)
-		nbr = -nbr;
-	while (nbr != 0)
+	if (sign)
 	{
-		str[--len] = (nbr % 10) + '0';
-		nbr = nbr / 10;
-	}
-	if (is_negative)
 		str[0] = '-';
+		i = digits;
+	}
+	else
+		i = digits - 1;
+	while (i >= sign)
+	{
+		str[i--] = nb % 10 + '0';
+		nb /= 10;
+	}
+	str[digits + sign] = '\0';
 	return (str);
 }

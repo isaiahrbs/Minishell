@@ -137,7 +137,7 @@ int		is_special_char(char c);
 int		get_operator_len(const char *s);
 void	free_token_array(char **tokens, int count);
 int		process_quotes(const char *s, int *i, char quote);
-int		ft_env(t_data *data);
+int		env_to_token_list(t_data *data);
 t_token	*form_token_list(char **token_list);
 t_token	*create_var(char *name, char *content);
 char	*ft_content(char *s);
@@ -160,6 +160,8 @@ int		invalid_var(t_token *token);
 void	free_token(t_token **temp);
 int		unset_var(t_data *data);
 char	*ft_itoa(int n);
+void	ft_echo(char **executable, char ***cmd);
+void	ft_env(t_data *data, char **executable, char ***cmd);
 
 //*----minishell----*//
 

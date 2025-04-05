@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 18:05:40 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/02 00:46:24 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/05 12:56:11 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char	**create_env()
 	return (new_env);
 }
 
-int	ft_env(t_data *data)
+int	env_to_token_list(t_data *data)
 {
 	int	i;
 

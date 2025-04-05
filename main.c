@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 09:47:04 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/03 12:39:09 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/05 12:56:11 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv, char **envp)
 	data.exit_code = 0;
 	data.temporary_var = NULL;
 	init_signal_handlers();
-	if (!ft_env(&data))
+	if (!env_to_token_list(&data))
 		return (1);
 	res = 0;
 	while (!res)
