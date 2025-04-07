@@ -44,7 +44,7 @@ char	*ft_strdup(const char *s1)
 	return (dest);
 }
 
-char *ft_strndup(char *s1, size_t n)
+char	*ft_strndup(char *s1, size_t n)
 {
 	char	*dest;
 	size_t	len;

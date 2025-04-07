@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_var.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:40:43 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/03/18 04:56:14 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/07 14:29:51 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	is_valid_name(char *s)
 
 	i = 0;
 	if (s == NULL || s[i] == '\0')
-		return 0;
+		return (0);
 	if (!ft_isalpha(s[0]) && s[0] != '_')
 		return (0);
 	i++;

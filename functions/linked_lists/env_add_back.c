@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:23:09 by irobinso          #+#    #+#             */
-/*   Updated: 2025/02/25 11:25:30 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/07 14:28:38 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	env_lstadd_back(t_env **head, t_env *new)
 	t_env	*last;
 
 	if (!head || !new)
-		return;
+		return ;
 	if (*head == NULL)
 	{
 		*head = new;
-		return;
+		return ;
 	}
 	last = *head;
 	while (last->next != NULL)

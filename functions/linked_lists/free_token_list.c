@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_token_list.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:51:22 by irobinso          #+#    #+#             */
-/*   Updated: 2025/03/31 12:32:58 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/07 14:29:25 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	free_token_list(t_token **head)
 	t_token	*temp;
 
 	if (!head || !*head)
-		return;
+		return ;
 	current = *head;
 	while (current)
 	{

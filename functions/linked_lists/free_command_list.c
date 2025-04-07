@@ -1,4 +1,5 @@
-#include <stdlib.h>
+
+
 #include "../../inc/minishell.h"
 
 void	free_command_list(t_data *data)
