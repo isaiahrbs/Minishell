@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:43:37 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/02 01:50:45 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/07 12:51:34 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ t_token	*tokenize(t_data *data)
 	free(data->input);
 	if (!token_list)
 		return (NULL);
-	//print_list(token_list);
 	data->token = form_token_list(token_list);
 	free_list(token_list);
 	if (!data->token)
@@ -98,7 +97,7 @@ t_token	*tokenize(t_data *data)
 		free_token_list(&data->token);
 		return (NULL);
 	}
-	filter(data->token);//* to remove useless quotes
+	filter(data->token);
 	init_token_type(data->token);
 	return (data->token);
 }

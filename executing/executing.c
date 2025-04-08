@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:57:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/05 12:58:37 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/07 13:01:51 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	child(t_command *tmp, int *prev_pipe_read, int *fd, t_data *data)
 		if (is_redirection(tmp, &executable, &cmd))
 		{
 			redirout_append(tmp, &outfile, &executable, &cmd);
-			redirect_in(tmp, &infile, &executable, &cmd);
+			redir_in(tmp, &infile, &executable, &cmd);
 			tmp = tmp->next;
 		}
 		tmp = tmp->next;

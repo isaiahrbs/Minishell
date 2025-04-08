@@ -3,10 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< Updated upstream
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:40:43 by dimatayi          #+#    #+#             */
 /*   Updated: 2025/04/07 14:33:59 by irobinso         ###   ########.fr       */
+=======
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/07 13:00:53 by dimatayi          #+#    #+#             */
+/*   Updated: 2025/04/07 13:08:49 by dimatayi         ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,14 +107,6 @@ typedef struct s_data
 	int			exit_code;
 }	t_data;
 
-/* typedef struct s_variable
-{
-	char				*name;
-	char				*value;
-	struct s_variable	*prev;
-	struct s_variable	*next;
-}	t_variable; */
-
 //*----debugging----*//
 
 void	print_list(char **list);
@@ -163,8 +162,8 @@ int		ft_pipe(t_command *tmp, int *fd);
 void	edit_pipe_fd(int infile, int outfile, int *prev_pipe_read, int *fd);
 int		is_cmd(t_command *tmp, char **executable, char ***cmd);
 int		is_redirection(t_command *tmp, char **executable, char ***cmd);
-int		redirout_append(t_command *tmp, int *outfile, char **executable, char ***cmd);
-int		redirect_in(t_command *tmp, int *infile, char **executable, char ***cmd);
+int		redirout_append(t_command *tmp, int *outfil, char **exec, char ***cmd);
+int		redir_in(t_command *tmp, int *infile, char **executable, char ***cmd);
 void	free_double_ptr(char **args);
 void	ft_free(char **executable, char ***cmd);
 void	free_command_list(t_data *data);
@@ -174,6 +173,10 @@ int		unset_var(t_data *data);
 char	*ft_itoa(int n);
 void	ft_echo(char **executable, char ***cmd);
 void	ft_env(t_data *data, char **executable, char ***cmd);
+int		ft_exit_code(t_data *data, t_token *token);
+int		scan_var_list(t_token **tmp, t_token *var, t_token *tok, char *v_strt);
+int		clean_var(int i, int j, t_token *tmp);
+char	*search_replace(t_token *tmp, char *old, char *var_start);
 
 //*----minishell----*//
 

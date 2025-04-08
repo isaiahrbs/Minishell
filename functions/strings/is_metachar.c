@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 17:12:04 by irobinso          #+#    #+#             */
-/*   Updated: 2025/03/18 03:04:04 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/07 12:48:54 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	is_metachar_type(int type)
 
 int	is_metachar_value(char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (s[i] == '|' || s[i] == '&' || s[i] == ';' || s[i] == '('

@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:04:51 by irobinso          #+#    #+#             */
-/*   Updated: 2025/03/15 17:27:38 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/07 12:47:28 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_token	*create_token(char *value)
 	new = (t_token *)malloc(sizeof(t_token));
 	if (!new)
 		return (NULL);
-	new->value = ft_strdup(value); // Ensure the value is copied correctly
+	new->value = ft_strdup(value);
 	if (!new->value)
 	{
 		free(new);

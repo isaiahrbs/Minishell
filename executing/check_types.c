@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 01:33:03 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/01 22:43:50 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/07 13:01:51 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	is_redirection(t_command *tmp, char **executable, char ***cmd)
 	return (1);
 }
 
-int	redirout_append(t_command *tmp, int *outfile, char **executable, char ***cmd)
+int	redirout_append(t_command *tmp, int *outfile, char **exec, char ***cmd)
 {
 	if (tmp->type != APPEND && tmp->type != REDIRECT_OUT)
 		return (0);
@@ -61,13 +61,13 @@ int	redirout_append(t_command *tmp, int *outfile, char **executable, char ***cmd
 	if (*outfile == -1)
 	{
 		perror(tmp->next->value);
-		ft_free(executable, cmd);
+		ft_free(exec, cmd);
 		exit(1);
 	}
 	return (1);
 }
 
-int	redirect_in(t_command *tmp, int *infile, char **executable, char ***cmd)
+int	redir_in(t_command *tmp, int *infile, char **executable, char ***cmd)
 {
 	if (tmp->type != REDIRECT_IN)
 		return (0);

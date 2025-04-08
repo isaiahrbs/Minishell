@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 18:05:40 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/05 12:56:11 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/07 12:37:01 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_content(char *s)
 {
 	int		i;
 	int		j;
-	char		*output;
+	char	*output;
 
 	i = 0;
 	j = 0;
@@ -60,7 +60,7 @@ char	**free_failed_env(char **new_env, char *pwd)
 	return (NULL);
 }
 
-char	**create_env()
+char	**create_env(void)
 {
 	char	**new_env;
 	char	*pwd;

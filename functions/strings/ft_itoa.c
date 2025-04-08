@@ -5,8 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+<<<<<<< Updated upstream
 /*   Created: 2025/02/27 12:40:43 by dimatayi          #+#    #+#             */
 /*   Updated: 2025/04/07 14:30:35 by irobinso         ###   ########.fr       */
+=======
+/*   Created: 2025/04/02 01:10:56 by dimatayi          #+#    #+#             */
+/*   Updated: 2025/04/07 12:50:02 by dimatayi         ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 

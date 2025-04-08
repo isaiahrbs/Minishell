@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 10:17:40 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/02 01:18:12 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/07 12:41:45 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,29 @@ int	ft_assign(char *s, t_token **var)
 	return (1);
 }
 
+int	add_to_var_list(int exp, t_token *token_tmp, t_data *data)
+{
+	if (exp)
+	{
+		if (!ft_assign(token_tmp->value, &data->env_list))
+		{
+			token_tmp->value = NULL;
+			return (0);
+		}
+	}
+	else
+	{
+		if (!ft_assign(token_tmp->value, &data->temporary_var))
+		{
+			token_tmp->value = NULL;
+			return (0);
+		}
+	}
+	free(token_tmp->value);
+	token_tmp->value = NULL;
+	return (1);
+}
+
 int	assign_var(t_data *data)
 {
 	t_token	*token_tmp;
@@ -52,24 +75,8 @@ int	assign_var(t_data *data)
 	{
 		if (token_tmp->value && is_assignment(token_tmp->value))
 		{
-			if (exp)
-			{
-				if (!ft_assign(token_tmp->value, &data->env_list))
-				{
-					token_tmp->value = NULL;
-					return (0);
-				}
-			}
-			else
-			{
-				if (!ft_assign(token_tmp->value, &data->temporary_var))
-				{
-					token_tmp->value = NULL;
-					return (0);
-				}
-			}
-			free(token_tmp->value);
-			token_tmp->value = NULL;
+			if (!add_to_var_list(exp, token_tmp, data))
+				return (0);
 		}
 		if (exp == 1)
 			exp = 0;

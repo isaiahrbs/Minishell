@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 11:51:08 by irobinso          #+#    #+#             */
-/*   Updated: 2025/03/01 23:18:13 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/07 12:48:43 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	is_equal(const char *s1, const char *s2)
 			return (0);
 		i++;
 	}
-	return (s1[i] == '\0' && s2[i] == '\0');//*cette ligne, c'est chatgpt
+	return (s1[i] == '\0' && s2[i] == '\0');
 }
 
 int	ft_isdigit(int c)

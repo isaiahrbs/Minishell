@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_type.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 11:42:29 by irobinso          #+#    #+#             */
-/*   Updated: 2025/03/16 16:59:08 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/07 12:53:21 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,11 @@ static void	init_special_chars(t_token *token)
 void	init_type(t_token *token)
 {
 	if (!token)
-		return;
+		return ;
 	/* if (token->type == NO_TYPE)
 		init_commands(token); */
 	if (token->type == NO_TYPE)
 		init_special_chars(token);
 	if (token->type == NO_TYPE)
-		return;
+		return ;
 }

@@ -6,13 +6,13 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 11:52:51 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/02 00:02:44 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/07 12:37:22 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int delete_var(t_token **env_list, char *var)
+int	delete_var(t_token **env_list, char *var)
 {
 	t_token	*curr;
 	t_token	*prev;
@@ -39,7 +39,7 @@ int delete_var(t_token **env_list, char *var)
 	return (0);
 }
 
-int unset_var(t_data *data)
+int	unset_var(t_data *data)
 {
 	t_token	*token_tmp;
 	int		unset;

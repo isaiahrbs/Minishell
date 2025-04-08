@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 23:08:41 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/02 01:55:08 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/07 12:46:53 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@ int	invalid_var(t_token *token)
 {
 	int		i;
 	int		j;
-	char	*new;
 	t_token	*tmp;
 
-	new = NULL;
 	tmp = token;
 	while (tmp && (tmp->value))
 	{
@@ -29,16 +27,11 @@ int	invalid_var(t_token *token)
 			if (tmp->value[i] == '$' && !is_single_quote(tmp->value, i))
 			{
 				j = 0;
-				while (tmp->value[i + j] && !is_metachar_value(&tmp->value[i + j]))
+				while (tmp->value[i + j]
+					&& !is_metachar_value(&tmp->value[i + j]))
 					j++;
-				new = ft_calloc(i + ft_strlen(&tmp->value[i + j]) + 1, sizeof(char));
-				if (!new)
+				if (!clean_var(i, j, tmp))
 					return (0);
-				ft_strncat(new, tmp->value, i);
-				ft_strncat(new, &tmp->value[i + j], j);
-				free(tmp->value);
-				tmp->value = new;
-				new = NULL;
 			}
 			i++;
 		}
@@ -79,9 +72,6 @@ char	*search_replace(t_token *tmp, char *old, char *var_start)
 	i = var_start - old;
 	if (ft_strncmp(tmp->name, &old[i], name_len))
 		return (old);
-	/* if (old[i + name_len] != '\0' && old[i + name_len] != ' '
-			&& old[i + name_len] != 34 && old[i + name_len] != '$')
-		return (old); */
 	if (!tmp->content)
 		tmp->content = "";
 	new = ft_calloc(i + content_len + remaining_len, sizeof(char));
@@ -107,27 +97,12 @@ int	expand(t_token *token, t_token *var, t_data *data)
 	{
 		while (token->value && token->value[i])
 		{
-			if (!ft_strncmp(token->value, "$?\0", 3))
-			{
-				free(token->value);
-				token->value = ft_itoa(data->exit_code);
-				if (!token->value)
-					return (0);
-			}
+			if (!ft_strncmp(token->value, "$?\0", 3)
+				&& !ft_exit_code(data, token))
+				return (0);
 			var_start = is_var(&token->value[i], &i);
-			if (var_start)
-			{
-				tmp = var;
-				while (tmp)
-				{
-					if (tmp->name && tmp->content)
-						token->value = search_replace
-							(tmp, token->value, var_start);
-					if (!token->value)
-						return (0);
-					tmp = tmp->next;
-				}
-			}
+			if (var_start && !scan_var_list(&tmp, var, token, var_start))
+				return (0);
 			else
 				break ;
 			i++;
