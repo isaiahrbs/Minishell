@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 09:50:37 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/09 11:37:40 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/09 20:21:33 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	handle_heredoc(char *delimiter, int *infile)
 	}
 	while (1)
 	{
-		line = readline("heredoc > ");
+		line = readline("► ");
 		if (!line)
 		{
 			printf("minishell: warning: here-document delimited by end-of-file\n");

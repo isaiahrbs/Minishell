@@ -6,7 +6,11 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:57:27 by dimatayi          #+#    #+#             */
+<<<<<<< Updated upstream
 /*   Updated: 2025/04/09 20:23:41 by dimatayi         ###   ########.fr       */
+=======
+/*   Updated: 2025/04/09 20:22:28 by irobinso         ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +35,8 @@ int	ft_executable(char **executable, char ***cmd, t_data *data)
 		ft_echo(executable, cmd);
 	if (!ft_exec(*executable, *cmd, data))
 		ft_free(executable, cmd);
-	if (!strcmp("<<", *executable))
-		ft_echo(executable, cmd);
+	/* if (is_equal(data->commands, "export") != 0 && !data->commands->next)
+		ft_export(data); */
 	if (data->error == MALLOC_ERROR)
 		exit(1);
 	printf("command not found\n");

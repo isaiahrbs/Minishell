@@ -5,8 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+<<<<<<< Updated upstream
 /*   Created: 2025/04/07 13:00:53 by dimatayi          #+#    #+#             */
 /*   Updated: 2025/04/09 20:19:59 by dimatayi         ###   ########.fr       */
+=======
+/*   Created: 2025/02/27 12:40:43 by dimatayi          #+#    #+#             */
+/*   Updated: 2025/04/09 19:45:26 by irobinso         ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,5 +190,6 @@ int		is_metachar_type(int type);
 int		is_metachar_value(char *s);
 void	command_list(t_data *data);
 void	handle_heredoc(char *delimiter, int *infile);
+void	ft_export(t_data *data);
 
 #endif

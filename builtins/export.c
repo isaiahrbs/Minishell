@@ -1,42 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_input.c                                        :+:      :+:    :+:   */
+/*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/20 10:39:04 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/09 15:29:39 by irobinso         ###   ########.fr       */
+/*   Created: 2025/04/09 19:44:49 by irobinso          #+#    #+#             */
+/*   Updated: 2025/04/09 20:24:20 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	add_input_history(char *input)
+int		get_length(char **env)
 {
-	if (input && *input)
-		add_history(input);
+	int	i;
+
+	i = 0;
+	while (env[i])
+		i++;
+	return (i);
 }
 
-char	*get_input(void)
+void	ft_export(t_data *data)
 {
-	char	*input;
-	char	cwd[200];
-	char	*string;
+	char	**temp_env;
+	int		length;
+	int		i;
 
-	getcwd(cwd, sizeof(cwd));
-	string = ft_strjoin(cwd, "🌍~ ");
-	input = readline(string);
-	if (!input)
+	i = 0;
+	temp_env = malloc(sizeof(char *) * (data->envp + 1));
+	if (!temp_env)
 	{
-		printf("exit\n");
-		exit(0);
+		printf("error: Malloc temp_emv");
+		exit(EXIT_FAILURE);
 	}
-	if (is_equal(input, "exit") != 0)
+	length = get_length(data->envp);
+	while (i <= length)
 	{
-		printf("Closed Minishell.\n");
-		exit(EXIT_SUCCESS);
+
 	}
-	add_input_history(input);
-	return (input);
+	return ;
 }
