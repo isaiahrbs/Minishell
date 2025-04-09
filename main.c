@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 09:47:04 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/09 10:17:12 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/09 19:38:37 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+void	set_var(char **envp, t_data *data)
+{
+	data->envp = envp;
+	data->exit_code = 0;
+	data->temporary_var = NULL;
+}
 
 int	main(int argc, char **argv, char **envp)
 {
@@ -19,9 +26,7 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argc;
 	(void)argv;
-	data.envp = envp;
-	data.exit_code = 0;
-	data.temporary_var = NULL;
+	set_var(envp, &data);
 	init_signal_handlers();
 	if (!env_to_token_list(&data))
 		return (1);
@@ -30,10 +35,8 @@ int	main(int argc, char **argv, char **envp)
 	{
 		data.input = get_input();
 		tokenize(&data);
-		//print_chained_list(data.token);
 		check_if_valid(&data);
 		command_list(&data);
-		//print_command_list(data.commands);
 		res = executing(&data);
 		free_token_list(&data.token);
 		free_token_list(&data.temporary_var);

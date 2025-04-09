@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:57:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/09 11:36:10 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/09 20:23:41 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	child(t_command *tmp, int *prev_pipe_read, int *fd, t_data *data)
 			}
 			handle_heredoc(tmp->next->value, &infile);
 			tmp = tmp->next->next;
-			continue;
+			continue ;
 		}
 		is_cmd(tmp, &executable, &cmd);
 		if (is_redirection(tmp, &executable, &cmd))

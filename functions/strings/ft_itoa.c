@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/27 12:40:43 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/09 09:24:55 by irobinso         ###   ########.fr       */
+/*   Created: 2025/04/02 01:10:56 by dimatayi          #+#    #+#             */
+/*   Updated: 2025/04/09 19:41:48 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
