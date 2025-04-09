@@ -3,17 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-<<<<<<< Updated upstream
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:40:43 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/07 14:33:59 by irobinso         ###   ########.fr       */
-=======
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/07 13:00:53 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/07 13:08:49 by dimatayi         ###   ########.fr       */
->>>>>>> Stashed changes
+/*   Updated: 2025/04/09 10:22:41 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,5 +184,6 @@ void	check_if_valid(t_data *data);
 int		is_metachar_type(int type);
 int		is_metachar_value(char *s);
 void	command_list(t_data *data);
+void	handle_heredoc(char *delimiter, int *infile);
 
 #endif

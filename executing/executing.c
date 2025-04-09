@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:57:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/07 13:01:51 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/09 11:36:10 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ int	ft_executable(char **executable, char ***cmd, t_data *data)
 		ft_echo(executable, cmd);
 	if (!ft_exec(*executable, *cmd, data))
 		ft_free(executable, cmd);
+	if (!strcmp("<<", *executable))
+		ft_echo(executable, cmd);
 	if (data->error == MALLOC_ERROR)
 		exit(1);
 	printf("command not found\n");
@@ -50,6 +52,17 @@ int	child(t_command *tmp, int *prev_pipe_read, int *fd, t_data *data)
 	executable = NULL;
 	while (tmp && tmp->value && tmp->type != PIPE)
 	{
+		if (tmp->type == HERE_DOC)
+		{
+			if (!tmp->next)
+			{
+				printf("minishell: syntax error near unexpected token\n");
+				exit(1);
+			}
+			handle_heredoc(tmp->next->value, &infile);
+			tmp = tmp->next->next;
+			continue;
+		}
 		is_cmd(tmp, &executable, &cmd);
 		if (is_redirection(tmp, &executable, &cmd))
 		{

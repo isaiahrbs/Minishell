@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 09:47:04 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/05 12:56:11 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/09 10:17:12 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	main(int argc, char **argv, char **envp)
 		//print_chained_list(data.token);
 		check_if_valid(&data);
 		command_list(&data);
+		//print_command_list(data.commands);
 		res = executing(&data);
 		free_token_list(&data.token);
 		free_token_list(&data.temporary_var);
