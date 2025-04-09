@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 15:21:49 by irobinso          #+#    #+#             */
-/*   Updated: 2025/03/18 03:00:19 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/09 20:57:05 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,16 @@ void	check_if_valid(t_data *data)
 		{
 			printf("Error: Invalid prompt.\n");
 			data->activation_key = 0;
-			return;
+			return ;
 		}
 		else if (token->next)
 		{
-			if (is_metachar_type(token->type) && is_metachar_type(token->next->type))
+			if (is_metachar_type(token->type)
+				&& is_metachar_type(token->next->type))
 			{
 				printf("Error: Invalid prompt.\n");
 				data->activation_key = 0;
-				return;
+				return ;
 			}
 		}
 		token = token->next;

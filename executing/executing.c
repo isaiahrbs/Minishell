@@ -6,26 +6,11 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:57:27 by dimatayi          #+#    #+#             */
-<<<<<<< Updated upstream
-/*   Updated: 2025/04/09 20:23:41 by dimatayi         ###   ########.fr       */
-=======
-/*   Updated: 2025/04/09 20:22:28 by irobinso         ###   ########.fr       */
->>>>>>> Stashed changes
+/*   Updated: 2025/04/09 20:42:23 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
-
-void	ft_free(char **executable, char ***cmd)
-{
-	if (*executable)
-	{
-		free(*executable);
-		*executable = NULL;
-	}
-	if (*cmd)
-		free_double_ptr(*cmd);
-}
 
 int	ft_executable(char **executable, char ***cmd, t_data *data)
 {
@@ -50,23 +35,11 @@ int	child(t_command *tmp, int *prev_pipe_read, int *fd, t_data *data)
 	int		infile;
 	int		outfile;
 
-	infile = 0;
-	outfile = 1;
-	cmd = NULL;
-	executable = NULL;
+	init_var(&cmd, &executable, &infile, &outfile);
 	while (tmp && tmp->value && tmp->type != PIPE)
 	{
-		if (tmp->type == HERE_DOC)
-		{
-			if (!tmp->next)
-			{
-				printf("minishell: syntax error near unexpected token\n");
-				exit(1);
-			}
-			handle_heredoc(tmp->next->value, &infile);
-			tmp = tmp->next->next;
+		if (tmp->type == HERE_DOC && here_doc(&tmp, &infile))
 			continue ;
-		}
 		is_cmd(tmp, &executable, &cmd);
 		if (is_redirection(tmp, &executable, &cmd))
 		{
@@ -131,7 +104,3 @@ int	executing(t_data *data)
 	}
 	return (0);
 }
-
-//executable argument redirection file pipe
-/*[echo hello] [<] [text.txt] [ | ] [ls -l] [>] [output.txt]
-[ls -l] [>] [djjfkdsjfjsk skskdjsk] [ | ] [cat text.txt ls cat echo] */

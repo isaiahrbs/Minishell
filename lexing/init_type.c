@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/21 11:42:29 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/07 12:53:21 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/09 20:55:54 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ void	init_type(t_token *token)
 {
 	if (!token)
 		return ;
-	/* if (token->type == NO_TYPE)
-		init_commands(token); */
 	if (token->type == NO_TYPE)
 		init_special_chars(token);
 	if (token->type == NO_TYPE)
