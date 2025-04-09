@@ -27,14 +27,16 @@ Minishell supports basic shell functionalities including command execution, redi
 ```bash
 .
 ├── src/              # Main source code
-│   ├── lexer/        # Tokenization of input
+│   ├── lexing/       # Tokenization of input
 │   ├── parser/       # Building command structures
-│   ├── executor/     # Command execution and pipes
+│   ├── executing/    # Command execution and pipes
 │   ├── builtins/     # Built-in command functions
-│   ├── utils/        # Utility functions
-│   └── main.c        # Entry point
-├── include/          # Header files
+│   ├── functions/    # Utility functions
+│   ├── cleaner/      # Setup the environment
+│   ├── inc/          # Header files
+│   └── signals/      # Handles signals
 ├── Makefile          # Build system
+├── Main.c            # Entry point
 └── README.md
 ```
 
@@ -42,7 +44,7 @@ Minishell supports basic shell functionalities including command execution, redi
 
 ## 🧠 How it Works
 
-1. **Input Handling**: A prompt is displayed and user input is read using `readline`.
+1. **Get Input**: A prompt is displayed and user input is read using `readline`.
 2. **Lexing**: The input is split into tokens while respecting quotes and special characters.
 3. **Parsing**: Tokens are parsed into executable commands with proper structure.
 4. **Execution**: Commands are executed, handling redirections, pipes, and environment.
