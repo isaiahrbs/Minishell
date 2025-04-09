@@ -3,23 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 10:59:16 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/09 19:05:56 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/10 00:21:29 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-//* stats de depart : 25 mars
-//* finis le :
-//* RETRIES : 7
 void	execute_cd(t_data *data)
 {
-	char *path;
+	char	*path;
 
-	/* 1. Get target path */
 	if (data->token->next != NULL && data->token->next->value != NULL)
 	{
 		path = data->token->next->value;
@@ -30,11 +26,9 @@ void	execute_cd(t_data *data)
 		if (path == NULL)
 		{
 			fprintf(stderr, "minishell: cd: HOME not set\n");
-			return;
+			return ;
 		}
 	}
-
-	/* 2. Attempt directory change (let chdir() handle validation) */
 	if (chdir(path) == -1)
 	{
 		fprintf(stderr, "minishell: cd: %s: ", path);
@@ -42,7 +36,6 @@ void	execute_cd(t_data *data)
 	}
 }
 
-//* JE PUE TELLEMENT EN CODE QUE CA MA PRIS 3 HEURES POUR CE CHECKER DE MERDE
 int	checker(t_token *token)
 {
 	if (is_equal(token->value, "cd"))

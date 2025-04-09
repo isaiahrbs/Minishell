@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 21:57:46 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/09 22:00:56 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/10 00:25:56 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ void	update_token_types(t_data *data)
 	}
 }
 
-t_command	*cmd_new(char *val, int type)
+t_cmd	*cmd_new(char *val, int type)
 {
-	t_command	*cmd;
+	t_cmd	*cmd;
 
-	cmd = malloc(sizeof(t_command));
+	cmd = malloc(sizeof(t_cmd));
 	if (!cmd)
 		return (NULL);
 	cmd->value = ft_strdup(val);
@@ -39,9 +39,9 @@ t_command	*cmd_new(char *val, int type)
 	return (cmd);
 }
 
-void	cmd_list_add_back(t_command **head, t_command *new)
+void	cmd_list_add_back(t_cmd **head, t_cmd *new)
 {
-	t_command	*tmp;
+	t_cmd	*tmp;
 
 	if (!head || !new)
 		return ;
@@ -57,7 +57,7 @@ void	cmd_list_add_back(t_command **head, t_command *new)
 	new->prev = tmp;
 }
 
-void	cmd_add_arg(t_command *cmd, char *arg)
+void	cmd_add_arg(t_cmd *cmd, char *arg)
 {
 	char	*tmp;
 	char	*new_val;

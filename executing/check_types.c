@@ -6,13 +6,13 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 01:33:03 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/07 13:01:51 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/10 00:25:56 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int	is_cmd(t_command *tmp, char **executable, char ***cmd)
+int	is_cmd(t_cmd *tmp, char **executable, char ***cmd)
 {
 	if (tmp->type == WORD)
 	{
@@ -34,7 +34,7 @@ int	is_cmd(t_command *tmp, char **executable, char ***cmd)
 	return (0);
 }
 
-int	is_redirection(t_command *tmp, char **executable, char ***cmd)
+int	is_redirection(t_cmd *tmp, char **executable, char ***cmd)
 {
 	if (tmp->type != APPEND && tmp->type != REDIRECT_IN
 		&& tmp->type != REDIRECT_OUT)
@@ -48,7 +48,7 @@ int	is_redirection(t_command *tmp, char **executable, char ***cmd)
 	return (1);
 }
 
-int	redirout_append(t_command *tmp, int *outfile, char **exec, char ***cmd)
+int	redirout_append(t_cmd *tmp, int *outfile, char **exec, char ***cmd)
 {
 	if (tmp->type != APPEND && tmp->type != REDIRECT_OUT)
 		return (0);
@@ -67,7 +67,7 @@ int	redirout_append(t_command *tmp, int *outfile, char **exec, char ***cmd)
 	return (1);
 }
 
-int	redir_in(t_command *tmp, int *infile, char **executable, char ***cmd)
+int	redir_in(t_cmd *tmp, int *infile, char **executable, char ***cmd)
 {
 	if (tmp->type != REDIRECT_IN)
 		return (0);

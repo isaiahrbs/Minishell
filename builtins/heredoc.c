@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 09:50:37 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/09 20:21:33 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/10 00:22:10 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ void	handle_heredoc(char *delimiter, int *infile)
 		if (!line)
 		{
 			printf("minishell: warning: here-document delimited by end-of-file\n");
-			break;
+			break ;
 		}
 		if (is_equal(line, delimiter) != 0)
 		{
 			free(line);
-			break;
+			break ;
 		}
 		write(pipefd[1], line, ft_strlen(line));
 		write(pipefd[1], "\n", 1);

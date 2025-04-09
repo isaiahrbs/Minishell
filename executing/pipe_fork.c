@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 01:33:05 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/05 13:54:20 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/10 00:25:56 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ void	edit_pipe_fd(int infile, int outfile, int *prev_pipe_read, int *fd)
 	}
 }
 
-int	ft_pipe(t_command *tmp, int *fd)
+int	ft_pipe(t_cmd *tmp, int *fd)
 {
-	t_command	*next_cmd;
+	t_cmd	*next_cmd;
 
 	fd[0] = -1;
 	fd[1] = -1;

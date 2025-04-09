@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 12:46:06 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/09 19:40:05 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/10 00:25:56 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_command_list(t_data *data)
 {
-	t_command	*temp;
+	t_cmd	*temp;
 
 	while (data->commands)
 	{

@@ -6,15 +6,15 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 15:16:25 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/09 22:16:45 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/10 00:28:48 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int	build(t_command **curr, t_token *token, t_command **head)
+int	build(t_cmd **curr, t_token *token, t_cmd **head)
 {
-	t_command	*node;
+	t_cmd	*node;
 
 	if (!*curr || is_metachar_type((*curr)->type))
 	{
@@ -29,12 +29,12 @@ int	build(t_command **curr, t_token *token, t_command **head)
 	return (1);
 }
 
-static t_command	*build_cmd_list(t_data *data)
+static t_cmd	*build_cmd_list(t_data *data)
 {
-	t_command	*head;
-	t_command	*curr;
-	t_command	*node;
-	t_token		*token;
+	t_cmd	*head;
+	t_cmd	*curr;
+	t_cmd	*node;
+	t_token	*token;
 
 	head = NULL;
 	curr = NULL;

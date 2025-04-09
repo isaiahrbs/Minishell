@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 20:41:59 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/09 20:42:08 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/10 00:25:56 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ft_free(char **executable, char ***cmd)
 		free_double_ptr(*cmd);
 }
 
-int	here_doc(t_command **tmp, int *infile)
+int	here_doc(t_cmd **tmp, int *infile)
 {
 	if (!(*tmp)->next)
 	{

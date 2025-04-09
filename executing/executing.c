@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:57:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/09 20:42:23 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/10 00:28:22 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_executable(char **executable, char ***cmd, t_data *data)
 	exit(1);
 }
 
-int	child(t_command *tmp, int *prev_pipe_read, int *fd, t_data *data)
+int	child(t_cmd *tmp, int *prev_pipe_read, int *fd, t_data *data)
 {
 	char	**cmd;
 	char	*executable;
@@ -55,7 +55,7 @@ int	child(t_command *tmp, int *prev_pipe_read, int *fd, t_data *data)
 	exit(1);
 }
 
-t_command	*parent(int *prev_pipe_read, int *fd, t_command *tmp, t_data *data)
+t_cmd	*parent(int *prev_pipe_read, int *fd, t_cmd *tmp, t_data *data)
 {
 	pid_t	wait_result;
 	int		status;
@@ -82,10 +82,10 @@ t_command	*parent(int *prev_pipe_read, int *fd, t_command *tmp, t_data *data)
 
 int	executing(t_data *data)
 {
-	t_command	*tmp;
-	int			prev_pipe_read;
-	int			fd[2];
-	pid_t		pid;
+	t_cmd	*tmp;
+	int		prev_pipe_read;
+	int		fd[2];
+	pid_t	pid;
 
 	data->error = NO_TYPE;
 	prev_pipe_read = -1;
