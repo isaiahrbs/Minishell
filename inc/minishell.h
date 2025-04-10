@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:40:43 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/10 16:25:13 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/10 17:15:51 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,5 +194,6 @@ void	command_list(t_data *data);
 void	handle_heredoc(char *delimiter, int *infile);
 void	ft_export(t_data *data);
 void	set_var(char **envp, t_data *data);
+void	handle_cd_command(t_data *data);
 
 #endif

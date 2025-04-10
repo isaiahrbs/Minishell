@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:43:37 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/10 16:42:23 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/10 17:16:23 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ t_token	*tokenize(t_data *data)
 		return (NULL);
 	if (is_equal("export", data->token->value) != 0 && !data->token->next)
 		ft_export(data);
+	handle_cd_command(data);
 	if (!ft_variable(data))
 	{
 		free_token_list(&data->token);
