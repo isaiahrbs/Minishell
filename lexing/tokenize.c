@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenize.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:43:37 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/07 12:51:34 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/10 15:45:23 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ t_token	*tokenize(t_data *data)
 	free_list(token_list);
 	if (!data->token)
 		return (NULL);
+	if (is_equal("export", data->token->value) != 0 && !data->token->next)
+		ft_export(data);
 	if (!ft_variable(data))
 	{
 		free_token_list(&data->token);

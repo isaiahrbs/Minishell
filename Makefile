@@ -21,12 +21,12 @@ SRCS = lexing/get_input.c lexing/tokenize.c lexing/init_type.c \
 	functions/strings/ft_strdup.c functions/linked_lists/free_list.c \
 	functions/linked_lists/free_token_list.c functions/strings/ft_calloc.c \
 	signals/signals.c functions/strings/ft_strjoin.c \
-	functions/debug/print_chained_list.c cleaner/ft_env.c \
+	cleaner/ft_env.c \
 	lexing/filter.c lexing/filter_utils.c executing/executing.c \
 	executing/real_split.c executing/find_path.c executing/check_types.c \
 	executing/pipe_fork.c parsing/command_list.c parsing/check_if_valid.c \
 	functions/linked_lists/free_command_list.c functions/strings/is_metachar.c \
-	functions/debug/printcmdlist.c cleaner/unset_var.c \
+	cleaner/unset_var.c builtins/export.c\
 	functions/strings/ft_itoa.c executing/built_in.c builtins/cd.c \
 	executing/executing_utils.c builtins/heredoc.c parsing/command_list_utils.c
 
