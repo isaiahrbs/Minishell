@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:39:04 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/09 15:29:39 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/10 16:15:09 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,6 @@ char	*get_input(void)
 		exit(EXIT_SUCCESS);
 	}
 	add_input_history(input);
+	free(string);
 	return (input);
 }

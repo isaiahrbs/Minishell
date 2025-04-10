@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:40:43 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/10 15:57:01 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/10 16:25:13 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,6 @@ int		redirout_append(t_cmd *tmp, int *outfil, char **exec, char ***cmd);
 int		redir_in(t_cmd *tmp, int *infile, char **executable, char ***cmd);
 void	free_double_ptr(char **args);
 void	ft_free(char **executable, char ***cmd);
-void	free_command_list(t_data *data);
 int		invalid_var(t_token *token);
 void	free_token(t_token **temp);
 int		unset_var(t_data *data);
@@ -177,6 +176,7 @@ void	cmd_add_arg(t_cmd *cmd, char *arg);
 void	cmd_list_add_back(t_cmd **head, t_cmd *new);
 t_cmd	*cmd_new(char *val, int type);
 void	update_token_types(t_data *data);
+void	free_command_list(t_data *data);
 
 //*----minishell----*//
 

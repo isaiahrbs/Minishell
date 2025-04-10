@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_command_list.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 12:46:06 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/10 00:25:56 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/10 16:25:13 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

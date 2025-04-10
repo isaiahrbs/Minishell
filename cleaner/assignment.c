@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   assignment.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 10:17:40 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/07 12:41:45 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/10 16:38:07 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

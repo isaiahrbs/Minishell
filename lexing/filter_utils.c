@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filter_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 16:36:34 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/09 20:55:01 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/10 16:12:28 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,17 @@ int	is_fully_quoted(const char *str, int *quote_type)
 	while (str[i])
 	{
 		if (str[i] == '"' || str[i] == '\'')
+		{
 			quote = str[i];
-		i++;
-		if (!check_quote_type(quote, &first_type))
-			return (0);
-		if (!process_quote(str, &i, quote))
-			return (0);
-		if (str[i] && str[i] != '"' && str[i] != '\'')
+			i++;
+			if (!check_quote_type(quote, &first_type))
+				return (0);
+			if (!process_quote(str, &i, quote))
+				return (0);
+			if (str[i] && str[i] != '"' && str[i] != '\'')
+				return (0);
+		}
+		else
 			return (0);
 	}
 	*quote_type = first_type;
