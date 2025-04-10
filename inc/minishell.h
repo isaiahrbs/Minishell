@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:40:43 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/10 00:27:48 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/10 15:57:01 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,5 +193,6 @@ int		is_metachar_value(char *s);
 void	command_list(t_data *data);
 void	handle_heredoc(char *delimiter, int *infile);
 void	ft_export(t_data *data);
+void	set_var(char **envp, t_data *data);
 
 #endif

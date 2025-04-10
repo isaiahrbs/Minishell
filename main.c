@@ -3,21 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 09:47:04 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/09 19:38:37 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/10 15:57:19 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
-
-void	set_var(char **envp, t_data *data)
-{
-	data->envp = envp;
-	data->exit_code = 0;
-	data->temporary_var = NULL;
-}
 
 int	main(int argc, char **argv, char **envp)
 {
