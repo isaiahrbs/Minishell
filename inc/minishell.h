@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:40:43 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/10 17:15:51 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/11 00:30:14 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,6 +177,7 @@ void	cmd_list_add_back(t_cmd **head, t_cmd *new);
 t_cmd	*cmd_new(char *val, int type);
 void	update_token_types(t_data *data);
 void	free_command_list(t_data *data);
+void	*ft_memset(void *s, int c, size_t n);
 
 //*----minishell----*//
 

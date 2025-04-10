@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:39:04 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/10 16:15:09 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/10 20:12:07 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,15 @@ void	add_input_history(char *input)
 char	*get_input(void)
 {
 	char	*input;
-	char	cwd[200];
+	char	*cwd;
 	char	*string;
 
-	getcwd(cwd, sizeof(cwd));
+	cwd = getcwd(NULL, 0);
+	if (!cwd)
+	{
+		perror("getcwd");
+		exit(EXIT_FAILURE);
+	}
 	string = ft_strjoin(cwd, "🌍~ ");
 	input = readline(string);
 	if (!input)
