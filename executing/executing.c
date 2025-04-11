@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:57:27 by dimatayi          #+#    #+#             */
-<<<<<<< Updated upstream
-/*   Updated: 2025/04/12 00:57:27 by irobinso         ###   ########.fr       */
-=======
-/*   Updated: 2025/04/12 00:51:54 by dimatayi         ###   ########.fr       */
->>>>>>> Stashed changes
+/*   Updated: 2025/04/12 01:07:43 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

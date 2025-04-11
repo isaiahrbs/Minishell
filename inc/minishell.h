@@ -6,11 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:40:43 by dimatayi          #+#    #+#             */
-<<<<<<< Updated upstream
-/*   Updated: 2025/04/11 22:58:43 by irobinso         ###   ########.fr       */
-=======
-/*   Updated: 2025/04/12 00:41:43 by dimatayi         ###   ########.fr       */
->>>>>>> Stashed changes
+/*   Updated: 2025/04/12 01:10:39 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,13 +193,8 @@ void	check_if_valid(t_data *data);
 int		is_metachar_type(int type);
 int		is_metachar_value(char *s);
 void	command_list(t_data *data);
-<<<<<<< Updated upstream
-void	handle_heredoc(char *delimiter, int *infile);
 void	ft_export(t_data *data, char **executable, char ***cmd);
-=======
 void	handle_heredoc(char *delimiter, int *infile, t_data *data);
-void	ft_export(t_data *data);
->>>>>>> Stashed changes
 void	set_var(char **envp, t_data *data);
 void	handle_cd_command(t_data *data);
 

@@ -6,11 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 10:17:40 by dimatayi          #+#    #+#             */
-<<<<<<< Updated upstream
-/*   Updated: 2025/04/12 00:50:58 by irobinso         ###   ########.fr       */
-=======
-/*   Updated: 2025/04/12 01:03:15 by dimatayi         ###   ########.fr       */
->>>>>>> Stashed changes
+/*   Updated: 2025/04/12 01:07:26 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
