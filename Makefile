@@ -26,9 +26,9 @@ SRCS = lexing/get_input.c lexing/tokenize.c lexing/init_type.c \
 	executing/real_split.c executing/find_path.c executing/check_types.c \
 	executing/pipe_fork.c parsing/command_list.c parsing/check_if_valid.c \
 	functions/linked_lists/free_command_list.c functions/strings/is_metachar.c \
-	cleaner/unset_var.c builtins/export.c\
-	functions/strings/ft_itoa.c executing/built_in.c builtins/cd.c \
-	executing/executing_utils.c builtins/heredoc.c parsing/command_list_utils.c
+	cleaner/unset_var.c builtins/export.c parsing/command_list_utils.c \
+	functions/strings/ft_itoa.c builtins/echo_and_env.c builtins/cd.c \
+	executing/executing_utils.c builtins/heredoc.c
 
 # Object files (preserving directory structure)
 OBJS = $(SRCS:%.c=$(OBJ_DIR)/%.o)

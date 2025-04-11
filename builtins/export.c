@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 19:44:49 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/12 01:04:24 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/12 01:16:36 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,12 +107,14 @@ void	bubble_sort_token_list(t_token *head)
 	}
 }
 
-t_token *copy_list(t_token *original)
+t_token	*copy_list(t_token *original)
 {
-	t_token *new_head = NULL;
-	t_token *current = original;
-	t_token *new_node;
+	t_token	*new_head;
+	t_token	*current;
+	t_token	*new_node;
 
+	new_head = NULL;
+	current = original;
 	while (current)
 	{
 		new_node = malloc(sizeof(t_token));
