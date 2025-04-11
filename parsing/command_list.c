@@ -6,11 +6,33 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 15:16:25 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/10 16:35:25 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/12 00:33:04 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+void	export_checker(t_data *data)
+{
+	t_cmd	*current;
+
+	current = data->commands;
+	if (current && current->value)
+	{
+		if (!ft_strncmp(current->value, "export", 6))
+		{
+			if (!current->next)
+				return ;
+			free(current->value);
+			current->value = NULL;
+			if (current->next && current->next->value)
+			{
+				free(current->next->value);
+				current->next->value = NULL;
+			}
+		}
+	}
+}
 
 int	build(t_cmd **curr, t_token *token, t_cmd **head)
 {
@@ -63,5 +85,6 @@ void	command_list(t_data *data)
 	{
 		update_token_types(data);
 		data->commands = build_cmd_list(data);
+		export_checker(data);
 	}
 }
