@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 23:10:10 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/07 13:03:45 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/12 00:23:35 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,19 @@ int	ft_exit_code(t_data *data, t_token *token)
 	return (1);
 }
 
-int	scan_var_list(t_token **tmp, t_token *var, t_token *token, char *var_start)
+int	scan_var_list(t_token *var, char **value, char *var_start)
 {
-	*tmp = var;
-	while (*tmp)
+	t_token	*tmp;
+
+	tmp = var;
+	while (tmp)
 	{
-		if ((*tmp)->name && (*tmp)->content)
-			token->value = search_replace
-				(*tmp, token->value, var_start);
-		if (!token->value)
+		if (tmp->name && tmp->content)
+			*value = search_replace
+				(tmp, *value, var_start);
+		if (!*value)
 			return (0);
-		*tmp = (*tmp)->next;
+		tmp = tmp->next;
 	}
 	return (1);
 }

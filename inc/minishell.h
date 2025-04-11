@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:40:43 by dimatayi          #+#    #+#             */
+<<<<<<< Updated upstream
 /*   Updated: 2025/04/11 22:58:43 by irobinso         ###   ########.fr       */
+=======
+/*   Updated: 2025/04/12 00:41:43 by dimatayi         ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +124,7 @@ void	free_list(char **list);
 void	free_token_list(t_token **head);
 char	*ft_strjoin(const char *s1, const char *s2);
 size_t	ft_strlen(const char *str);
+char	*is_var(char *value, int *index);
 int		is_assignment(char *s);
 int		is_valid_name(char *s);
 int		is_expansion(char *s);
@@ -166,10 +171,10 @@ char	*ft_itoa(int n);
 void	ft_echo(char **executable, char ***cmd);
 void	ft_env(t_data *data, char **executable, char ***cmd);
 int		ft_exit_code(t_data *data, t_token *token);
-int		scan_var_list(t_token **tmp, t_token *var, t_token *tok, char *v_strt);
+int		scan_var_list(t_token *var, char **value, char *v_strt);
 int		clean_var(int i, int j, t_token *tmp);
 char	*search_replace(t_token *tmp, char *old, char *var_start);
-int		here_doc(t_cmd **tmp, int *infile);
+int		here_doc(t_cmd **tmp, int *infile, t_data *data);
 void	ft_free(char **executable, char ***cmd);
 void	init_var(char ***cmd, char **executable, int *infile, int *outfile);
 void	cmd_add_arg(t_cmd *cmd, char *arg);
@@ -192,8 +197,13 @@ void	check_if_valid(t_data *data);
 int		is_metachar_type(int type);
 int		is_metachar_value(char *s);
 void	command_list(t_data *data);
+<<<<<<< Updated upstream
 void	handle_heredoc(char *delimiter, int *infile);
 void	ft_export(t_data *data, char **executable, char ***cmd);
+=======
+void	handle_heredoc(char *delimiter, int *infile, t_data *data);
+void	ft_export(t_data *data);
+>>>>>>> Stashed changes
 void	set_var(char **envp, t_data *data);
 void	handle_cd_command(t_data *data);
 

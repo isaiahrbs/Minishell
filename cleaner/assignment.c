@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   assignment.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 10:17:40 by dimatayi          #+#    #+#             */
+<<<<<<< Updated upstream
 /*   Updated: 2025/04/12 00:50:58 by irobinso         ###   ########.fr       */
+=======
+/*   Updated: 2025/04/12 01:03:15 by dimatayi         ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +60,9 @@ int	add_to_var_list(int exp, t_token *token_tmp, t_data *data)
 			token_tmp->value = NULL;
 			return (0);
 		}
+		free(token_tmp->value);
+		token_tmp->value = NULL;
 	}
-	free(token_tmp->value);
-	token_tmp->value = NULL;
 	return (1);
 }
 

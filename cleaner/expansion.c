@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 23:08:41 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/07 12:46:53 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/12 00:24:15 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ char	*search_replace(t_token *tmp, char *old, char *var_start)
 
 int	expand(t_token *token, t_token *var, t_data *data)
 {
-	t_token	*tmp;
 	char	*var_start;
 	int		i;
 
@@ -101,7 +100,7 @@ int	expand(t_token *token, t_token *var, t_data *data)
 				&& !ft_exit_code(data, token))
 				return (0);
 			var_start = is_var(&token->value[i], &i);
-			if (var_start && !scan_var_list(&tmp, var, token, var_start))
+			if (var_start && !scan_var_list(var, &token->value, var_start))
 				return (0);
 			else
 				break ;

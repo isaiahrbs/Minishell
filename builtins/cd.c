@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 10:59:16 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/11 00:45:37 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/11 23:39:31 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	change_env_list(t_data *data, char *replace_str)
 		{
 			ft_memset(current->value, 0, sizeof(current->value));
 			current->value = ft_strdup(replace_str);
-			break;
+			break ;
 		}
 		current = current->next;
 	}
@@ -48,13 +48,12 @@ void	update_pwd_oldpwd(t_data *data)
 			ft_memset(data->envp[i], 0, sizeof(data->envp[i]));
 			data->envp[i] = ft_strdup(replace_str);
 			change_env_list(data, replace_str);
-			break;
+			break ;
 		}
 		i++;
 	}
 	free(replace_str);
 }
-
 
 void	execute_cd(t_data *data)
 {
@@ -80,7 +79,6 @@ void	execute_cd(t_data *data)
 	}
 	else
 		update_pwd_oldpwd(data);
-
 }
 
 int	checker(t_token *token)
@@ -100,6 +98,3 @@ void	handle_cd_command(t_data *data)
 	execute_cd(data);
 	free_token_list(&data->token);
 }
-
-
-

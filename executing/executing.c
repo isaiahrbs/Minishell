@@ -6,7 +6,11 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:57:27 by dimatayi          #+#    #+#             */
+<<<<<<< Updated upstream
 /*   Updated: 2025/04/12 00:57:27 by irobinso         ###   ########.fr       */
+=======
+/*   Updated: 2025/04/12 00:51:54 by dimatayi         ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +44,7 @@ int	child(t_cmd *tmp, int *prev_pipe_read, int *fd, t_data *data)
 	init_var(&cmd, &executable, &infile, &outfile);
 	while (tmp && tmp->value && tmp->type != PIPE)
 	{
-		if (tmp->type == HERE_DOC && here_doc(&tmp, &infile))
+		if (tmp->type == HERE_DOC && here_doc(&tmp, &infile, data))
 			continue ;
 		is_cmd(tmp, &executable, &cmd);
 		if (is_redirection(tmp, &executable, &cmd))

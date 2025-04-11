@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 20:41:59 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/10 00:25:56 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/12 00:42:16 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void	ft_free(char **executable, char ***cmd)
 		free_double_ptr(*cmd);
 }
 
-int	here_doc(t_cmd **tmp, int *infile)
+int	here_doc(t_cmd **tmp, int *infile, t_data *data)
 {
 	if (!(*tmp)->next)
 	{
 		printf("minishell: syntax error near unexpected token\n");
 		exit(1);
 	}
-	handle_heredoc((*tmp)->next->value, infile);
+	handle_heredoc((*tmp)->next->value, infile, data);
 	(*tmp) = (*tmp)->next->next;
 	return (1);
 }
