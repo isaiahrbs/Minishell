@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 19:44:49 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/11 22:58:58 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/12 01:04:24 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,10 +118,10 @@ t_token *copy_list(t_token *original)
 		new_node = malloc(sizeof(t_token));
 		if (!new_node)
 			return (NULL);
-		ft_memset(new_node, 0, sizeof(t_token)); // zero out everything
+		ft_memset(new_node, 0, sizeof(t_token));
 		new_node->content = ft_strdup(current->value);
 		new_node->type = current->type;
-		ft_lstadd_back(&new_head, new_node); // your own function to handle linking
+		ft_lstadd_back(&new_head, new_node);
 		current = current->next;
 	}
 	return (new_head);
@@ -134,7 +134,6 @@ void	ft_export(t_data *data, char **executable, char ***cmd)
 	export_var = copy_list(data->env_list);
 	if (!export_var)
 	{
-		//safe_free(export_var);
 		printf("export: failed to copy environment list\n");
 		return ;
 	}
