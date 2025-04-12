@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 10:17:40 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/12 01:07:26 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/12 16:18:23 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ int	assign_var(t_data *data)
 		}
 		if (exp == 1)
 			exp = 0;
+		else if (!ft_strncmp(token_tmp->value, "export", 6))
+			exp = 1;
 		token_tmp = token_tmp->next;
 	}
 	return (1);
