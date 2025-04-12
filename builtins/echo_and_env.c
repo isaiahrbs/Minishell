@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 13:42:46 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/12 01:14:09 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/12 13:28:57 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_echo(char **executable, char ***cmd)
 {
-	int		i;
-	int		n;
+	int	i;
+	int	n;
 
 	i = 1;
 	n = 0;

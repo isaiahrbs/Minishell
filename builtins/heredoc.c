@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 09:50:37 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/12 01:17:44 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/12 13:12:33 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,21 @@ int	expand_to_heredoc(char **line, t_data *data)
 	return (1);
 }
 
+int	check_heredoc_line(char *line, char *delimiter)
+{
+	if (!line)
+	{
+		printf("minishell: warning: here-document delimited by end-of-file\n");
+		return (0);
+	}
+	if (is_equal(line, delimiter) != 0)
+	{
+		free(line);
+		return (0);
+	}
+	return (1);
+}
+
 void	handle_heredoc(char *delimiter, int *infile, t_data *data)
 {
 	int		pipefd[2];
@@ -52,16 +67,8 @@ void	handle_heredoc(char *delimiter, int *infile, t_data *data)
 	while (1)
 	{
 		line = readline("► ");
-		if (!line)
-		{
-			printf("minishell: warning: here-document delimited by end-of-file\n");
+		if (!check_heredoc_line(line, delimiter))
 			break ;
-		}
-		if (is_equal(line, delimiter) != 0)
-		{
-			free(line);
-			break ;
-		}
 		expand_to_heredoc(&line, data);
 		write(pipefd[1], line, ft_strlen(line));
 		write(pipefd[1], "\n", 1);
