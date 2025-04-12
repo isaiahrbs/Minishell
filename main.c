@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 09:47:04 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/12 00:56:35 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/12 16:54:23 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ int	main(int argc, char **argv, char **envp)
 		tokenize(&data);
 		check_if_valid(&data);
 		command_list(&data);
-		//print_command_list(data.commands);
 		res = executing(&data);
 		free_token_list(&data.token);
 		free_command_list(&data);

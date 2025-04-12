@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 09:50:37 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/12 13:12:33 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/12 16:30:44 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:57:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/12 01:07:43 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/12 16:54:38 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ int	ft_executable(char **executable, char ***cmd, t_data *data)
 		ft_echo(executable, cmd);
 	if (!ft_exec(*executable, *cmd, data))
 		ft_free(executable, cmd);
-	/* if (is_equal(data->commands, "export") != 0 && !data->commands->next)
-		ft_export(data); */
 	if (data->error == MALLOC_ERROR)
 		exit(1);
 	printf("command not found\n");
