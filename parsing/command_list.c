@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 15:16:25 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/12 00:33:04 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/12 17:41:52 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	export_checker(t_data *data)
 {
-	t_cmd	*current;
+	t_token	*current;
 
-	current = data->commands;
+	current = data->token;
 	if (current && current->value)
 	{
 		if (!ft_strncmp(current->value, "export", 6))
@@ -83,8 +83,8 @@ void	command_list(t_data *data)
 {
 	if (data->activation_key)
 	{
+		export_checker(data);
 		update_token_types(data);
 		data->commands = build_cmd_list(data);
-		export_checker(data);
 	}
 }

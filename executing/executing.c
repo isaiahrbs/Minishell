@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:57:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/12 16:54:38 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/12 17:04:09 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ int	ft_executable(char **executable, char ***cmd, t_data *data)
 {
 	if (!strcmp("env", *executable))
 		ft_env(data, executable, cmd);
-	if (!strcmp("export", *executable))
+	if (!strcmp("export", *executable)
+		&& !data->commands->next
+		&& (!(*cmd)[1] || !(*cmd)[1][0]))
 		ft_export(data, executable, cmd);
 	if (!strcmp("echo", *executable))
 		ft_echo(executable, cmd);
