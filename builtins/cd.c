@@ -3,66 +3,82 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 10:59:16 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/12 13:43:34 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/12 19:10:02 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	change_env_list(t_data *data, char *replace_str)
+void	change_env_list(t_data *data, char *replace_str, char *oldpwd)
 {
 	t_token	*current;
 
 	current = data->env_list;
 	while (current)
 	{
-		if (ft_strncmp(current->value, "PWD=", 4) == 0)
+		if (ft_strncmp(current->name, "PWD", 3) == 0)
 		{
-			ft_memset(current->value, 0, sizeof(current->value));
-			current->value = ft_strdup(replace_str);
+			ft_memset(current->content, 0, sizeof(current->content));
+			current->content = ft_strdup(replace_str);
+			break ;
+		}
+		current = current->next;
+	}
+	current = data->env_list;
+	while (current)
+	{
+		if (ft_strncmp(current->name, "OLDPWD", 6) == 0)
+		{
+			ft_memset(current->content, 0, sizeof(current->content));
+			current->content = ft_strdup(oldpwd);
 			break ;
 		}
 		current = current->next;
 	}
 }
 
-void	update_pwd_oldpwd(t_data *data)
+void	update_pwd_oldpwd(t_data *data, char *oldpwd)
 {
 	char	*replace_str;
-	int		i;
 
-	replace_str = ft_strjoin("PWD=", getcwd(NULL, 0));
+	replace_str = getcwd(NULL, 0);
 	if (!replace_str)
 	{
 		perror("getcwd");
 		exit(EXIT_FAILURE);
 	}
-	i = 0;
-	while (data->envp[i])
-	{
-		if (ft_strncmp(data->envp[i], "PWD=", 4) == 0)
-		{
-			ft_memset(data->envp[i], 0, sizeof(data->envp[i]));
-			data->envp[i] = ft_strdup(replace_str);
-			change_env_list(data, replace_str);
-			break ;
-		}
-		i++;
-	}
+	change_env_list(data, replace_str, oldpwd);
 	free(replace_str);
+}
+
+char	*get_oldpwd(t_data *data)
+{
+	t_token	*current;
+	char	*copy;
+
+	current = data->env_list;
+	while (current)
+	{
+		if (ft_strncmp(current->name, "PWD", 3) == 0)
+		{
+			copy = ft_strdup(current->content);
+		}
+		current = current->next;
+	}
+	return (copy);
 }
 
 void	execute_cd(t_data *data)
 {
 	char	*path;
+	char	*oldpwd;
 
+	oldpwd = get_oldpwd(data);
 	if (data->token->next != NULL && data->token->next->value != NULL)
-	{
 		path = data->token->next->value;
-	}
 	else
 	{
 		path = getenv("HOME");
@@ -78,14 +94,9 @@ void	execute_cd(t_data *data)
 		perror("");
 	}
 	else
-		update_pwd_oldpwd(data);
-}
-
-int	checker(t_token *token)
-{
-	if (is_equal(token->value, "cd"))
-		return (1);
-	return (0);
+		update_pwd_oldpwd(data, oldpwd);
+	if (oldpwd)
+		free(oldpwd);
 }
 
 void	handle_cd_command(t_data *data)
@@ -93,8 +104,9 @@ void	handle_cd_command(t_data *data)
 	t_token	*current;
 
 	current = data->token;
-	if (!checker(current))
-		return ;
-	execute_cd(data);
-	free_token_list(&data->token);
+	if (is_equal(current->value, "cd"))
+	{
+		execute_cd(data);
+		free_token_list(&data->token);
+	}
 }
