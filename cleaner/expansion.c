@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 23:08:41 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/12 00:24:15 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/14 14:02:30 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	invalid_var(t_token *token)
 		i = 0;
 		while (tmp->value[i])
 		{
-			if (tmp->value[i] == '$' && !is_single_quote(tmp->value, i))
+			if (tmp->value[i] == '$' && !is_single_quote(tmp->value, i)
+				&& is_valid_name(tmp->value))
 			{
 				j = 0;
 				while (tmp->value[i + j]
@@ -58,6 +59,32 @@ char	*is_var(char *value, int *index)
 	return (var_start);
 }
 
+char	*search_exit_code(char *old, char *var_start, t_data *data)
+{
+	char	*new;
+	char	*exit_code;
+	int		content_len;
+	int		remaining_len;
+
+	exit_code = ft_itoa(data->exit_code);
+	if (!exit_code)
+		return (NULL);
+	content_len = ft_strlen(exit_code);
+	remaining_len = ft_strlen(var_start) - 1;
+	new = ft_calloc(var_start - old + content_len + remaining_len, sizeof(char));
+	if (!new)
+	{
+		free(exit_code);
+		return (NULL);
+	}
+	ft_strncat(new, old, var_start - old - 1);
+	ft_strncat(new, exit_code, content_len);
+	ft_strncat(new, var_start + 1, ft_strlen(var_start) - 1);
+	free(exit_code);
+	exit_code = NULL;
+	return (new);
+}
+
 char	*search_replace(t_token *tmp, char *old, char *var_start)
 {
 	char	*new;
@@ -80,7 +107,6 @@ char	*search_replace(t_token *tmp, char *old, char *var_start)
 	ft_strncat(new, old, i - 1);
 	ft_strncat(new, tmp->content, content_len);
 	ft_strncat(new, var_start + name_len, ft_strlen(var_start) - name_len);
-	free(old);
 	return (new);
 }
 
@@ -100,10 +126,10 @@ int	expand(t_token *token, t_token *var, t_data *data)
 				&& !ft_exit_code(data, token))
 				return (0);
 			var_start = is_var(&token->value[i], &i);
-			if (var_start && !scan_var_list(var, &token->value, var_start))
-				return (0);
-			else
+			if (!var_start)
 				break ;
+			if (var_start && !scan_var_list(var, &token->value, var_start, data))
+				return (0);
 			i++;
 		}
 		token = token->next;

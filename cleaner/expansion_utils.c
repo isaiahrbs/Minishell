@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 23:10:10 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/12 00:23:35 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/14 14:12:48 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,28 @@ int	ft_exit_code(t_data *data, t_token *token)
 	return (1);
 }
 
-int	scan_var_list(t_token *var, char **value, char *var_start)
+int	scan_var_list(t_token *var, char **value, char *var_start, t_data *data)
 {
-	t_token	*tmp;
+	t_token	*var_tmp;
+	char	*value_tmp;
 
-	tmp = var;
-	while (tmp)
+	var_tmp = var;
+	value_tmp = *value;
+	while (var_tmp)
 	{
-		if (tmp->name && tmp->content)
-			*value = search_replace
-				(tmp, *value, var_start);
-		if (!*value)
+		if (var_start[0] == '?')
+			value_tmp = search_exit_code(*value, var_start, data);
+		else if (var_tmp->name && var_tmp->content)
+			value_tmp = search_replace(var_tmp, *value, var_start);
+		if (!value_tmp)
 			return (0);
-		tmp = tmp->next;
+		if  (ft_strncmp(*value, value_tmp, ft_strlen(*value)))
+		{
+			free(*value);
+			*value = value_tmp;
+			break ;
+		}
+		var_tmp = var_tmp->next;
 	}
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:57:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/12 17:04:09 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/14 15:09:52 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,28 @@
 int	ft_executable(char **executable, char ***cmd, t_data *data)
 {
 	if (!strcmp("env", *executable))
+	{
 		ft_env(data, executable, cmd);
-	if (!strcmp("export", *executable)
-		&& !data->commands->next
-		&& (!(*cmd)[1] || !(*cmd)[1][0]))
+		exit(0);
+	}
+	if (!strcmp("export", *executable))
+	{
 		ft_export(data, executable, cmd);
+		exit(0);
+	}
 	if (!strcmp("echo", *executable))
+	{
 		ft_echo(executable, cmd);
+		exit(0);
+	}
 	if (!ft_exec(*executable, *cmd, data))
 		ft_free(executable, cmd);
+	/* if (is_equal(data->commands, "export") != 0 && !data->commands->next)
+		ft_export(data); */
 	if (data->error == MALLOC_ERROR)
 		exit(1);
 	printf("command not found\n");
-	exit(1);
+	exit(127);
 }
 
 int	child(t_cmd *tmp, int *prev_pipe_read, int *fd, t_data *data)
@@ -54,7 +63,7 @@ int	child(t_cmd *tmp, int *prev_pipe_read, int *fd, t_data *data)
 	edit_pipe_fd(infile, outfile, prev_pipe_read, fd);
 	if (executable)
 		ft_executable(&executable, &cmd, data);
-	exit(1);
+	return (1);
 }
 
 t_cmd	*parent(int *prev_pipe_read, int *fd, t_cmd *tmp, t_data *data)

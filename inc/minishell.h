@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:40:43 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/12 01:10:39 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/14 13:31:14 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,9 +167,10 @@ char	*ft_itoa(int n);
 void	ft_echo(char **executable, char ***cmd);
 void	ft_env(t_data *data, char **executable, char ***cmd);
 int		ft_exit_code(t_data *data, t_token *token);
-int		scan_var_list(t_token *var, char **value, char *v_strt);
+int		scan_var_list(t_token *var, char **value, char *v_strt, t_data *data);
 int		clean_var(int i, int j, t_token *tmp);
 char	*search_replace(t_token *tmp, char *old, char *var_start);
+char	*search_exit_code(char *old, char *var_start, t_data *data);
 int		here_doc(t_cmd **tmp, int *infile, t_data *data);
 void	ft_free(char **executable, char ***cmd);
 void	init_var(char ***cmd, char **executable, int *infile, int *outfile);

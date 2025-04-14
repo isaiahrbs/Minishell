@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 10:17:40 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/12 16:18:23 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/14 14:57:38 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ int	ft_assign(char *s, t_token **var)
 
 int	add_to_var_list(int exp, t_token *token_tmp, t_data *data)
 {
-	if (exp)
+	if (exp && (!token_tmp->next
+		|| (token_tmp->next && ft_strncmp(token_tmp->next->value, "|", 1))))
 	{
 		if (!ft_assign(token_tmp->value, &data->env_list))
 		{
