@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 23:10:10 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/14 14:12:48 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/14 15:16:02 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	scan_var_list(t_token *var, char **value, char *var_start, t_data *data)
 			value_tmp = search_replace(var_tmp, *value, var_start);
 		if (!value_tmp)
 			return (0);
-		if  (ft_strncmp(*value, value_tmp, ft_strlen(*value)))
+		if (ft_strncmp(*value, value_tmp, ft_strlen(*value)))
 		{
 			free(*value);
 			*value = value_tmp;

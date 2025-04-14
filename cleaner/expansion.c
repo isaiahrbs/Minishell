@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 23:08:41 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/14 14:02:30 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/14 15:15:42 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ char	*search_exit_code(char *old, char *var_start, t_data *data)
 		return (NULL);
 	content_len = ft_strlen(exit_code);
 	remaining_len = ft_strlen(var_start) - 1;
-	new = ft_calloc(var_start - old + content_len + remaining_len, sizeof(char));
+	new = ft_calloc
+		(var_start - old + content_len + remaining_len, sizeof(char));
 	if (!new)
 	{
 		free(exit_code);
@@ -128,7 +129,8 @@ int	expand(t_token *token, t_token *var, t_data *data)
 			var_start = is_var(&token->value[i], &i);
 			if (!var_start)
 				break ;
-			if (var_start && !scan_var_list(var, &token->value, var_start, data))
+			if (var_start
+				&& !scan_var_list(var, &token->value, var_start, data))
 				return (0);
 			i++;
 		}
