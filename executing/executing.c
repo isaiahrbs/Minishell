@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:57:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/14 15:16:17 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/14 23:54:20 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,12 +102,15 @@ int	executing(t_data *data)
 	prev_pipe_read = -1;
 	if (!data->commands)
 		return (0);
+	if (data->commands->type == PIPE)
+	{
+		printf("Syntax error\n");
+		return (0);
+	}
 	tmp = data->commands;
 	while (tmp && tmp->value)
 	{
-		if (ft_pipe(tmp, fd))
-			return (1);
-		if (ft_fork(&pid, &prev_pipe_read, fd))
+		if (ft_pipe(tmp, fd) || ft_fork(&pid, &prev_pipe_read, fd))
 			return (1);
 		if (pid == 0)
 			child(tmp, &prev_pipe_read, fd, data);
