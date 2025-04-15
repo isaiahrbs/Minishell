@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 19:44:49 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/12 16:54:12 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/15 11:23:23 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,20 +73,27 @@ t_token	*copy_list(t_token *original)
 
 void	ft_export(t_data *data, char **executable, char ***cmd)
 {
-	t_token	*export_var;
+	t_cmd	*current;
 
-	export_var = copy_list(data->env_list);
-	if (!export_var)
+	current = data->commands;
+	if (!current || !current->value)
+		return;
+	if (!ft_strncmp(current->value, "export", 6) &&
+		(!current->next || current->next->type == PIPE || current->next->type == REDIRECT_OUT))
 	{
-		printf("export: failed to copy environment list\n");
-		return ;
+		data->export_list = copy_list(data->env_list);
+		if (!data->export_list)
+		{
+			printf("export: failed to copy environment list\n");
+			return;
+		}
+		bubble_sort_token_list(data->export_list);
+		while (data->export_list && data->export_list->name && data->export_list->content)
+		{
+			printf("%s=%s\n", data->export_list->name, data->export_list->content);
+			data->export_list = data->export_list->next;
+		}
+		ft_free(executable, cmd);
+		exit(0);
 	}
-	bubble_sort_token_list(export_var);
-	while (export_var && export_var->name && export_var->content)
-	{
-		printf("%s=%s\n", export_var->name, export_var->content);
-		export_var = export_var->next;
-	}
-	ft_free(executable, cmd);
-	exit(0);
 }

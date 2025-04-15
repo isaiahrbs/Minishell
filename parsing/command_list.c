@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/05 15:16:25 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/12 17:41:52 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/15 11:23:35 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	export_checker(t_data *data)
 	{
 		if (!ft_strncmp(current->value, "export", 6))
 		{
-			if (!current->next)
+			if (!current->next || current->next->type == PIPE
+				|| current->next->type == REDIRECT_OUT)
 				return ;
 			free(current->value);
 			current->value = NULL;
