@@ -6,20 +6,20 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 09:02:17 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/10 00:18:59 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/15 18:21:26 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	init_terminal(void)
+/* void	init_terminal(void)
 {
 	struct termios	term;
 
 	tcgetattr(STDIN_FILENO, &term);
 	term.c_lflag &= ~ECHOCTL;
 	tcsetattr(STDIN_FILENO, TCSANOW, &term);
-}
+} */
 
 static void	handle_sigint(int sig)
 {

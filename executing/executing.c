@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:57:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/15 11:15:44 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/15 19:48:27 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ int	ft_executable(char **executable, char ***cmd, t_data *data)
 		ft_free(executable, cmd);
 	if (data->error == MALLOC_ERROR)
 		exit(1);
-	printf("command not found\n");
+	write(2, "command not found\n", 18);
+	//printf("command not found\n");
 	exit(127);
 }
 

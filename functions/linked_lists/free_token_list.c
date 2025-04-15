@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_token_list.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:51:22 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/15 11:25:08 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/15 18:11:57 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

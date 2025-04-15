@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 09:47:04 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/15 11:25:05 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/15 18:19:50 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,9 @@ int	main(int argc, char **argv, char **envp)
 		free_token_list(&data.token);
 		free_command_list(&data);
 		free_token_list(&data.temporary_var);
-		free_token_list(&data.export_list);
 	}
 	if (data.created_new_env)
 		free_double_ptr(data.envp);
 	free_token_list(&data.env_list);
-	return (0);
+	free_token_list(&data.export_list);
 }

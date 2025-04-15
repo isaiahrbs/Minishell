@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 20:41:59 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/12 00:42:16 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/15 19:48:43 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,3 +42,7 @@ void	init_var(char ***cmd, char **executable, int *infile, int *outfile)
 	*cmd = NULL;
 	*executable = NULL;
 }
+/* void	env_list_to_double_char(t_data *data)
+{
+
+} */
