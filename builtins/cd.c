@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 10:59:16 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/15 11:03:18 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/15 19:48:44 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	update_pwd_oldpwd(t_data *data, char *oldpwd)
 	}
 	change_env_list(data, replace_str, oldpwd);
 	free(replace_str);
+	if (oldpwd)
+		free(oldpwd);
 }
 
 char	*get_oldpwd(t_data *data)
@@ -71,6 +73,19 @@ char	*get_oldpwd(t_data *data)
 	return (copy);
 }
 
+void	check_wiggly(char **path, t_data *data)
+{
+	if (data->token->next->value && ft_strncmp(data->token->next->value, "~", 1) == 0)
+	{
+		*path = getenv("HOME");
+		if (path == NULL)
+		{
+			fprintf(stderr, "minishell: cd: HOME not set\n");
+			return ;
+		}
+	}
+}
+
 void	execute_cd(t_data *data)
 {
 	char	*path;
@@ -88,6 +103,7 @@ void	execute_cd(t_data *data)
 			return ;
 		}
 	}
+	check_wiggly(&path, data);
 	if (chdir(path) == -1)
 	{
 		fprintf(stderr, "minishell: cd: %s: ", path);
@@ -95,8 +111,6 @@ void	execute_cd(t_data *data)
 	}
 	else
 		update_pwd_oldpwd(data, oldpwd);
-	if (oldpwd)
-		free(oldpwd);
 }
 
 void	handle_cd_command(t_data *data)

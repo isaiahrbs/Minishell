@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 19:44:49 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/15 18:14:29 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/15 19:25:43 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,13 @@ t_token	*copy_list(t_token *original)
 	return (new_head);
 }
 
+void	print_line(t_data *data)
+{
+		printf("declare -x ");
+		printf("%s-", data->export_list->name);
+		printf("=\"%s\"\n", data->export_list->content);
+}
+
 void	ft_export(t_data *data, char **executable, char ***cmd)
 {
 	t_cmd	*current;
@@ -90,7 +97,7 @@ void	ft_export(t_data *data, char **executable, char ***cmd)
 		bubble_sort_token_list(data->export_list);
 		while (data->export_list && data->export_list->name && data->export_list->content)
 		{
-			printf("%s=%s\n", data->export_list->name, data->export_list->content);
+			print_line(data);
 			data->export_list = data->export_list->next;
 		}
 		ft_free(executable, cmd);
