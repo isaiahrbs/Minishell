@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 01:26:12 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/03/18 04:35:45 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/16 17:33:50 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,17 @@ int	build_cmd(char **split_path, char *executable, char **cmd, t_data *data)
 
 char	*get_path(char *executable, t_data *data)
 {
-	int		i;
 	char	*cmd;
 	char	**split_path;
+	t_token	*env_tmp;
 
-	i = 0;
 	split_path = NULL;
-	while (data->envp[i])
+	env_tmp = data->env_list;
+	while (env_tmp)
 	{
-		if (ft_strncmp("PATH=", data->envp[i], 5) == 0)
+		if (ft_strncmp("PATH", env_tmp->name, 4) == 0)
 		{
-			split_path = real_split(data->envp[i] + 5, ':');
+			split_path = real_split(env_tmp->content, ':');
 			if (!split_path)
 			{
 				perror("");
@@ -81,7 +81,7 @@ char	*get_path(char *executable, t_data *data)
 			}
 			break ;
 		}
-		i++;
+		env_tmp = env_tmp->next;
 	}
 	build_cmd(split_path, executable, &cmd, data);
 	free_double_ptr(split_path);

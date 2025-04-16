@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:57:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/15 19:48:27 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/16 17:40:59 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,16 @@
 int	ft_executable(char **executable, char ***cmd, t_data *data)
 {
 	if (!strcmp("env", *executable))
-	{
 		ft_env(data, executable, cmd);
-		exit(0);
-	}
 	if (!strcmp("export", *executable))
-	{
 		ft_export(data, executable, cmd);
-		exit(0);
-	}
 	if (!strcmp("echo", *executable))
-	{
 		ft_echo(executable, cmd);
-		exit(0);
-	}
 	if (!ft_exec(*executable, *cmd, data))
 		ft_free(executable, cmd);
 	if (data->error == MALLOC_ERROR)
 		exit(1);
 	write(2, "command not found\n", 18);
-	//printf("command not found\n");
 	exit(127);
 }
 
