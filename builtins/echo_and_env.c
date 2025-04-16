@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 13:42:46 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/16 19:56:39 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/16 20:03:19 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ void	ft_echo(char **executable, char ***cmd)
 		if (!ft_strncmp((*cmd)[i], "-n", 2) && (*cmd)[i][2] == '\0')
 		{
 			n = 1;
+			i++;
+			continue ;
+		}
+		else if (!ft_strncmp((*cmd)[i], "-n", 2) && (*cmd)[i][2] == 'n')
+		{
 			i++;
 			continue ;
 		}
