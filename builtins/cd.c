@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 10:59:16 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/15 19:48:44 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/17 00:50:21 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	*get_oldpwd(t_data *data)
 
 void	check_wiggly(char **path, t_data *data)
 {
-	if (data->token->next->value && ft_strncmp(data->token->next->value, "~", 1) == 0)
+	if (data->token->next && ft_strncmp(data->token->next->value, "~", 1) == 0)
 	{
 		*path = getenv("HOME");
 		if (path == NULL)
