@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   executing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:57:27 by dimatayi          #+#    #+#             */
+<<<<<<< Updated upstream
 /*   Updated: 2025/04/16 17:40:59 by dimatayi         ###   ########.fr       */
+=======
+/*   Updated: 2025/04/16 17:22:11 by irobinso         ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +32,7 @@ int	ft_executable(char **executable, char ***cmd, t_data *data)
 	exit(127);
 }
 
+
 int	child(t_cmd *tmp, int *prev_pipe_read, int *fd, t_data *data)
 {
 	char	**cmd;
@@ -35,6 +40,7 @@ int	child(t_cmd *tmp, int *prev_pipe_read, int *fd, t_data *data)
 	int		infile;
 	int		outfile;
 
+	child_signals();
 	init_var(&cmd, &executable, &infile, &outfile);
 	while (tmp && tmp->value && tmp->type != PIPE)
 	{
@@ -55,6 +61,21 @@ int	child(t_cmd *tmp, int *prev_pipe_read, int *fd, t_data *data)
 	return (1);
 }
 
+void	child_signals_check(t_data *data, int status)
+{
+	if (WIFEXITED(status))
+		data->exit_code = WEXITSTATUS(status);
+	else if (WIFSIGNALED(status))
+	{
+		int sig = WTERMSIG(status);
+		if (sig == SIGINT)
+			write(1, "\n", 1);
+		else if (sig == SIGQUIT)
+			write(1, "Quit (core dumped)\n", 19);
+		data->exit_code = 128 + sig;
+	}
+}
+
 t_cmd	*parent(int *prev_pipe_read, int *fd, t_cmd *tmp, t_data *data)
 {
 	pid_t	wait_result;
@@ -69,13 +90,12 @@ t_cmd	*parent(int *prev_pipe_read, int *fd, t_cmd *tmp, t_data *data)
 		tmp = tmp->next;
 	if (tmp && tmp->type == PIPE)
 		tmp = tmp->next;
+	parent_signals_ignore();
 	wait_result = wait(&status);
+	parent_signals_restore();
 	if (wait_result > 0)
 	{
-		if (WIFEXITED(status))
-			data->exit_code = WEXITSTATUS(status);
-		else
-			data->exit_code = 1;
+		child_signals_check(data, status);
 	}
 	return (tmp);
 }

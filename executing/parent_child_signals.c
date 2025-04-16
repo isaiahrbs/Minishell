@@ -1,36 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signals.c                                          :+:      :+:    :+:   */
+/*   parent_child_signals.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/26 09:02:17 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/16 14:24:12 by irobinso         ###   ########.fr       */
+/*   Created: 2025/04/16 14:39:02 by irobinso          #+#    #+#             */
+/*   Updated: 2025/04/16 17:21:23 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-/* void	init_terminal(void)
-{
-	struct termios	term;
-
-	tcgetattr(STDIN_FILENO, &term);
-	term.c_lflag &= ~ECHOCTL;
-	tcsetattr(STDIN_FILENO, TCSANOW, &term);
-} */
-
-void	handle_sigint(int sig)
+void	handle_sigint_child(int sig)
 {
 	(void)sig;
 	write(1, "\n", 1);
-	rl_on_new_line();
+	write(1, "Ctrl+C received\n", 17);
+	rl_done = 1;
 	rl_replace_line("", 0);
+	rl_on_new_line();
 	rl_redisplay();
+	exit(0);
 }
 
-void	init_signal_handlers(void)
+void	child_signals(void)
+{
+	struct sigaction	sa;
+
+	sa.sa_handler = handle_sigint_child;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = SA_RESTART;
+	sigaction(SIGINT, &sa, NULL);
+	signal(SIGQUIT, SIG_IGN);
+}
+
+void	parent_signals_ignore(void)
+{
+	signal(SIGINT, SIG_IGN);
+	signal(SIGQUIT, SIG_IGN);
+}
+
+void	parent_signals_restore(void)
 {
 	struct sigaction	sa;
 

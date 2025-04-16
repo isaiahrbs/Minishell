@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo_and_env.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 13:42:46 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/12 13:28:57 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/16 17:46:32 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

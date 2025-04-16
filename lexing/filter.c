@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:10:16 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/09 20:49:18 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/16 17:41:57 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

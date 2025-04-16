@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:40:43 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/15 19:30:41 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/16 14:40:12 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,5 +200,11 @@ void	ft_export(t_data *data, char **executable, char ***cmd);
 void	handle_heredoc(char *delimiter, int *infile, t_data *data);
 void	set_var(char **envp, t_data *data);
 void	handle_cd_command(t_data *data);
+void	handle_sigint(int sig);
+void	parent_signals_restore(void);
+void	parent_signals_ignore(void);
+void	handle_child_status(int status, t_data *data);
+void	child_signals(void);
+void	handle_sigquit_child(int sig);
 
 #endif

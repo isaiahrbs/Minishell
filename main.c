@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 09:47:04 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/15 18:19:50 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/16 16:45:10 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+int	SHELL_LVL;
 
 void	print_command_list(t_cmd *head)
 {
@@ -31,6 +33,7 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argc;
 	(void)argv;
+	rl_catch_signals = 0;
 	set_var(envp, &data);
 	init_signal_handlers();
 	if (!env_to_token_list(&data))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executing_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 20:41:59 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/15 19:48:43 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/16 14:39:16 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,28 @@ void	init_var(char ***cmd, char **executable, int *infile, int *outfile)
 	*cmd = NULL;
 	*executable = NULL;
 }
+
+void	handle_child_status(int status, t_data *data)
+{
+	if (WIFEXITED(status))
+		data->exit_code = WEXITSTATUS(status);
+	else if (WIFSIGNALED(status))
+	{
+		if (WTERMSIG(status) == SIGINT)
+		{
+			write(1, "\n", 1);
+			data->exit_code = 130;
+		}
+		else if (WTERMSIG(status) == SIGQUIT)
+		{
+			write(1, "Quit (core dumped)\n", 20);
+			data->exit_code = 131;
+		}
+	}
+
+}
+
+
 /* void	env_list_to_double_char(t_data *data)
 {
 
