@@ -6,7 +6,11 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 13:42:46 by dimatayi          #+#    #+#             */
+<<<<<<< Updated upstream
 /*   Updated: 2025/04/16 17:46:32 by irobinso         ###   ########.fr       */
+=======
+/*   Updated: 2025/04/16 19:06:47 by dimatayi         ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +34,13 @@ void	ft_echo(char **executable, char ***cmd)
 		else if ((*cmd)[i][0] == 34 || (*cmd)[i][0] == 39)
 			write(1, (*cmd)[i] + 1, ft_strlen((*cmd)[i] + 1) - 1);
 		else
-			printf("%s", (*cmd)[i]);
+			write(1, (*cmd)[i], ft_strlen((*cmd)[i]));
 		i++;
 		if ((*cmd)[i])
-			printf(" ");
+			write(1, " ", 1);
 	}
 	if (!n)
-		printf("\n");
+	write(1, "\n", 1);
 	ft_free(executable, cmd);
 	exit(0);
 }

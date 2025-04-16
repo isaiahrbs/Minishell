@@ -6,7 +6,11 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:40:43 by dimatayi          #+#    #+#             */
+<<<<<<< Updated upstream
 /*   Updated: 2025/04/16 14:40:12 by irobinso         ###   ########.fr       */
+=======
+/*   Updated: 2025/04/16 19:17:53 by dimatayi         ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +104,7 @@ typedef struct s_data
 	t_type		error;
 	int			created_new_env;
 	int			exit_code;
+	pid_t		*children_pid;
 }	t_data;
 
 //*----debugging----*//
