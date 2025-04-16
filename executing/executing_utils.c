@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executing_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 20:41:59 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/16 14:39:16 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/16 20:49:11 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,4 @@ void	handle_child_status(int status, t_data *data)
 			data->exit_code = 131;
 		}
 	}
-
 }
-
-
-/* void	env_list_to_double_char(t_data *data)
-{
-
-} */

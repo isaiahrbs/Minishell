@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:57:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/16 20:20:35 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/16 20:49:24 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	ft_executable(char **executable, char ***cmd, t_data *data)
 	write(2, "command not found\n", 18);
 	exit(127);
 }
-
 
 int	child(t_cmd *tmp, int *prev_pipe_read, int *fd, t_data *data)
 {
