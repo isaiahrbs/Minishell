@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:40:43 by dimatayi          #+#    #+#             */
-<<<<<<< Updated upstream
-/*   Updated: 2025/04/16 19:55:24 by dimatayi         ###   ########.fr       */
-=======
-/*   Updated: 2025/04/17 20:42:53 by irobinso         ###   ########.fr       */
->>>>>>> Stashed changes
+/*   Updated: 2025/04/17 20:55:51 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
