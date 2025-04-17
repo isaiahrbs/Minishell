@@ -6,7 +6,11 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:40:43 by dimatayi          #+#    #+#             */
+<<<<<<< Updated upstream
 /*   Updated: 2025/04/16 19:55:24 by dimatayi         ###   ########.fr       */
+=======
+/*   Updated: 2025/04/17 20:42:53 by irobinso         ###   ########.fr       */
+>>>>>>> Stashed changes
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +34,10 @@
 # define GREEN   "\033[92m"
 # define PINK    "\033[95m"
 # define RESET   "\033[0m"
+
+#define TOKEN_NO_QUOTE 0
+#define TOKEN_SQUOTE 1
+#define TOKEN_DQUOTE 2
 
 /* typedef enum s_f
 {
@@ -207,5 +215,7 @@ void	parent_signals_ignore(void);
 void	handle_child_status(int status, t_data *data);
 void	child_signals(void);
 void	handle_sigquit_child(int sig);
+void	filter(t_token *token);
+void	handle_exit_command(t_data *data);
 
 #endif

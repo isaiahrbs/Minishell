@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:43:37 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/11 23:28:26 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/17 20:36:48 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ t_token	*tokenize(t_data *data)
 	free_list(token_list);
 	if (!data->token)
 		return (NULL);
+	handle_exit_command(data);
 	handle_cd_command(data);
 	if (!ft_variable(data))
 	{

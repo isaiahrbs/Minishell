@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:39:04 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/10 20:12:07 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/17 20:35:00 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,6 @@ char	*get_input(void)
 	{
 		printf("exit\n");
 		exit(0);
-	}
-	if (is_equal(input, "exit") != 0)
-	{
-		printf("Closed Minishell.\n");
-		exit(EXIT_SUCCESS);
 	}
 	add_input_history(input);
 	free(string);
