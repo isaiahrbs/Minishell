@@ -6,13 +6,13 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 13:42:46 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/17 20:56:32 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/19 13:24:31 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ft_echo(char **executable, char ***cmd)
+void	ft_echo(char **executable, char ***cmd, t_data *data)
 {
 	int	i;
 	int	n;
@@ -21,6 +21,11 @@ void	ft_echo(char **executable, char ***cmd)
 	n = 0;
 	while ((*cmd)[i])
 	{
+		if (ft_strncmp(data->token->next->value, "$?", 2) == 0)
+		{
+			printf("%i", data->exit_code);
+			break;
+		}
 		if (!ft_strncmp((*cmd)[i], "-n", 2) && (*cmd)[i][2] == '\0')
 		{
 			n = 1;

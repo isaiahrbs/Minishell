@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:57:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/17 20:52:22 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/19 13:26:28 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_executable(char **executable, char ***cmd, t_data *data)
 	if (!strcmp("export", *executable))
 		ft_export(data, executable, cmd);
 	if (!strcmp("echo", *executable))
-		ft_echo(executable, cmd);
+		ft_echo(executable, cmd, data);
 	if (!ft_exec(*executable, *cmd, data))
 		ft_free(executable, cmd);
 	if (data->error == MALLOC_ERROR)
@@ -56,22 +56,7 @@ int	child(t_cmd *tmp, int *prev_pipe_read, int *fd, t_data *data)
 	return (1);
 }
 
-void	child_signals_check(t_data *data, int status)
-{
-	if (WIFEXITED(status))
-		data->exit_code = WEXITSTATUS(status);
-	else if (WIFSIGNALED(status))
-	{
-		int sig = WTERMSIG(status);
-		if (sig == SIGINT)
-			write(1, "\n", 1);
-		else if (sig == SIGQUIT)
-			write(1, "Quit (core dumped)\n", 19);
-		data->exit_code = 128 + sig;
-	}
-}
-
-t_cmd	*parent(int *prev_pipe_read, int *fd, t_cmd *tmp, t_data *data)
+t_cmd	*parent(int *prev_pipe_read, int *fd, t_cmd *tmp, t_data *data, int pid)
 {
 	pid_t	wait_result;
 	int		status;
@@ -86,12 +71,11 @@ t_cmd	*parent(int *prev_pipe_read, int *fd, t_cmd *tmp, t_data *data)
 	if (tmp && tmp->type == PIPE)
 		tmp = tmp->next;
 	parent_signals_ignore();
-	wait_result = wait(&status);
+	wait_result = waitpid(pid, &status, 0);
 	parent_signals_restore();
+	data->exit_code = status;
 	if (wait_result > 0)
-	{
-		child_signals_check(data, status);
-	}
+		grab_exit_code(data, status);
 	return (tmp);
 }
 
@@ -102,6 +86,7 @@ int	executing(t_data *data)
 	int		fd[2];
 	pid_t	pid;
 
+	exit_handling(data);
 	data->error = NO_TYPE;
 	prev_pipe_read = -1;
 	if (!data->commands)
@@ -118,7 +103,7 @@ int	executing(t_data *data)
 			return (1);
 		if (pid == 0)
 			child(tmp, &prev_pipe_read, fd, data);
-		tmp = parent(&prev_pipe_read, fd, tmp, data);
+		tmp = parent(&prev_pipe_read, fd, tmp, data, pid);
 	}
 	return (0);
 }

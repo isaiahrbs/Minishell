@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expansion.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 23:08:41 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/14 15:15:42 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/18 10:50:19 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

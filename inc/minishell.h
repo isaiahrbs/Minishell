@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:40:43 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/18 00:26:39 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/19 13:16:53 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <string.h>
 # include <stdlib.h>
 # include <signal.h>
+# include <stdbool.h>
 # include <sys/wait.h>
 # include <termios.h>
 # include <readline/readline.h>
@@ -104,6 +105,7 @@ typedef struct s_data
 	t_type		error;
 	int			created_new_env;
 	int			exit_code;
+	bool		exit_request;
 	pid_t		*children_pid;
 }	t_data;
 
@@ -171,7 +173,7 @@ int		invalid_var(t_token *token);
 void	free_token(t_token **temp);
 int		unset_var(t_data *data);
 char	*ft_itoa(int n);
-void	ft_echo(char **executable, char ***cmd);
+void	ft_echo(char **executable, char ***cmd, t_data *data);
 void	ft_env(t_data *data, char **executable, char ***cmd);
 int		ft_exit_code(t_data *data, t_token *token);
 int		scan_var_list(t_token *var, char **value, char *v_strt, t_data *data);
@@ -190,6 +192,7 @@ void	*ft_memset(void *s, int c, size_t n);
 int		copy_envp(t_data *data);
 int		increment_shlvl_in_list(t_token *env_list, char **envp_copy);
 int		increment_shlvl_double_char(t_token *env_list, char **envp_copy);
+int		ft_atoi(const char *str);
 
 //*----minishell----*//
 
@@ -215,6 +218,8 @@ void	handle_child_status(int status, t_data *data);
 void	child_signals(void);
 void	handle_sigquit_child(int sig);
 void	filter(t_token *token);
-void	handle_exit_command(t_data *data);
+void	exit_handling(t_data *data);
+void	exit_with_code(t_data *data);
+void	grab_exit_code(t_data *data, int status);
 
 #endif
