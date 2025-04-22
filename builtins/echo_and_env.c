@@ -6,13 +6,13 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/05 13:42:46 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/19 13:24:31 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/22 20:23:23 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ft_echo(char **executable, char ***cmd, t_data *data)
+/* void	ft_echo(char **executable, char ***cmd, t_data *data)
 {
 	int	i;
 	int	n;
@@ -49,7 +49,7 @@ void	ft_echo(char **executable, char ***cmd, t_data *data)
 	write(1, "\n", 1);
 	ft_free(executable, cmd);
 	exit(0);
-}
+} */
 
 
 void	ft_env(t_data *data, char **executable, char ***cmd)

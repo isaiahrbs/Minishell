@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:40:43 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/19 13:16:53 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/22 19:49:54 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,7 +201,7 @@ t_token	*tokenize(t_data *data);
 void	init_signal_handlers(void);
 void	filter(t_token *head);
 void	remove_useless_quotes(char *str, int *quote_type);
-int		check_quote_type(char quote, int *first_type);
+int		check_quote_type(char *str);
 void	init_terminal(void);
 void	check_if_valid(t_data *data);
 int		is_metachar_type(int type);

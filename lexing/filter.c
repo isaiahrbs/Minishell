@@ -6,96 +6,118 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:10:16 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/17 20:32:49 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/22 20:31:18 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-#include "minishell.h"
-/*
-char	*get_env_value(char *key, t_data *data)
+/* void	annoying_cases(t_token *token)
 {
-	t_token	*env = data->env_list;
-	size_t	key_len = ft_strlen(key);
 
-	while (env)
+	if (token && ft_strncmp(token->value, "\'\"\'", 3) == 0)
 	{
-		if (ft_strncmp(env->value, key, key_len) == 0 && env->value[key_len] == '=')
-			return (env->value + key_len + 1);
-		env = env->next;
+		if (token->prev && ft_strncmp(token->prev->value, "echo", 4) == 0)
+			printf("\"\n");
+		else
+			printf("command not found.\n");
+		token->content = ft_strdup("need_to_free");
 	}
-	return ("");
-}
+	else if (token && ft_strncmp(token->value, "\"\'\"", 3) == 0)
+	{
+		if (token->prev && ft_strncmp(token->prev->value, "echo", 4) == 0)
+			printf("\'\n");
+		else
+			printf("command not found.\n");
+		token->content = ft_strdup("need_to_free");
+	}
+} */
 
-char	*ft_strjoin_free(char *s1, const char *s2)
+int	check_quote_type(char *str)
 {
-	char	*joined = ft_strjoin(s1, s2);
-	free(s1);
-	return (joined);
-}
+	int	i;
 
-char	*manage_dollar(char *str, t_data *data)
-{
-	char	*result = malloc(1);
-	size_t	i = 0;
-	char	var[1024];
-	char	*value;
-
-	if (!result)
-		return (NULL);
-	result[0] = '\0';
-
+	i = 0;
+	if (!str)
+		return (0);
 	while (str[i])
 	{
-		if (str[i] == '$' && (ft_isalpha(str[i + 1]) || str[i + 1] == '_'))
-		{
-			i++;
-			size_t k = 0;
-			while (ft_isalnum(str[i]) || str[i] == '_')
-				var[k++] = str[i++];
-			var[k] = '\0';
-			value = get_env_value(var, data);
-			result = ft_strjoin_free(result, value);
-		}
-		else
-		{
-			char tmp[2] = {str[i++], 0};
-			result = ft_strjoin_free(result, tmp);
-		}
+		if (str[i] == '\'')
+			return (1);
+		if (str[i] == '\"')
+			return (2);
+		i++;
 	}
-	return (result);
+	return (0);
 }
-*/
-void	filter(t_token *token)
+
+char	get_first_quote(char *str)
 {
-	char	*src;
-	char	*dst;
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '\'' || str[i] == '\"')
+			return (str[i]);
+		i++;
+	}
+	return (0);
+}
+
+char	*quotes_remover(t_token *token, char quote)
+{
+	char	*str;
+	char	*result;
 	int		i;
 	int		j;
-	char	quote;
 
-	src = token->value;
-	dst = malloc(ft_strlen(src) + 1);
-	if (!dst)
-		return ;
 	i = 0;
 	j = 0;
-	while (src[i])
+	str = token->value;
+	result = malloc(ft_strlen(str + 1));
+	if (!result)
+		return (NULL);
+	while (str[i])
 	{
-		if (src[i] == '\'' || src[i] == '"')
+		if (str[i] != quote)
 		{
-			quote = src[i++];
-			while (src[i] && src[i] != quote)
-				dst[j++] = src[i++];
-			if (src[i] == quote)
-				i++;
+			result[j] = str[i];
+			j++;
 		}
-		else
-			dst[j++] = src[i++];
+		i++;
 	}
-	dst[j] = '\0';
-	free(token->value);
-	token->value = dst;
+	result[j] = '\0';
+	return (result);
 }
 
+void	remove_quotes(t_token *token)
+{
+	char	purge_quote;
+	char	*result;
+
+	purge_quote = get_first_quote(token->value);
+	if (purge_quote == '\'')
+		token->quote_type = 1;
+	else if (purge_quote == '"')
+		token->quote_type = 2;
+	else
+		token->quote_type = 0;
+	result = quotes_remover(token, purge_quote);
+	if (result)
+	{
+		free(token->value);
+		token->value = result;
+	}
+}
+
+void	filter(t_token *token)
+{
+	while (token)
+	{
+		//annoying_cases(token);
+		remove_quotes(token);
+		token = token->next;
+	}
+	//print_tokens(token);
+}
