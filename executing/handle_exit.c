@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:40:26 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/19 13:40:11 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/24 16:32:34 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	check_exit_request(t_data *data)
 		if (data->token->next && is_numeric(data->token->next->value))
 			data->exit_code = ft_atoi(data->token->next->value);
 		data->exit_request = true;
+		printf("exit\n");
 		free_command_list(data);
 	}
 }

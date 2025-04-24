@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:39:04 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/17 20:35:00 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/24 16:18:40 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ char	*get_input(void)
 	input = readline(string);
 	if (!input)
 	{
+		if (string)
+			free(string);
 		printf("exit\n");
 		exit(0);
 	}
