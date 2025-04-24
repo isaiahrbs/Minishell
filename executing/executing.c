@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executing.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:57:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/24 18:45:57 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/24 20:07:43 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,16 +56,16 @@ int	child(t_cmd *tmp, int *prev_pipe_read, int *fd, t_data *data)
 	return (1);
 }
 
-t_cmd	*parent(int *prev_pipe_read, int *fd, t_cmd *tmp, t_data *data, int pid)
+t_cmd	*parent(int *prev_pipe_read, t_cmd *tmp, t_data *data, int pid)
 {
 	pid_t	wait_result;
 	int		status;
 
 	if (*prev_pipe_read != -1)
 		close(*prev_pipe_read);
-	if (fd[1] != -1)
-		close(fd[1]);
-	*prev_pipe_read = fd[0];
+	if (data->fd[1] != -1)
+		close(data->fd[1]);
+	*prev_pipe_read = data->fd[0];
 	while (tmp && tmp->value && tmp-> type != PIPE)
 		tmp = tmp->next;
 	if (tmp && tmp->type == PIPE)
@@ -83,7 +83,6 @@ int	executing(t_data *data)
 {
 	t_cmd	*tmp;
 	int		prev_pipe_read;
-	int		fd[2];
 	pid_t	pid;
 
 	exit_handling(data);
@@ -99,11 +98,11 @@ int	executing(t_data *data)
 	tmp = data->commands;
 	while (tmp && tmp->value)
 	{
-		if (ft_pipe(tmp, fd) || ft_fork(&pid, &prev_pipe_read, fd))
+		if (ft_pipe(tmp, data->fd) || ft_fork(&pid, &prev_pipe_read, data->fd))
 			return (1);
 		if (pid == 0)
-			child(tmp, &prev_pipe_read, fd, data);
-		tmp = parent(&prev_pipe_read, fd, tmp, data, pid);
+			child(tmp, &prev_pipe_read, data->fd, data);
+		tmp = parent(&prev_pipe_read, tmp, data, pid);
 	}
 	return (0);
 }

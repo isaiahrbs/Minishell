@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 09:47:04 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/24 19:21:31 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/24 20:00:38 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	set_var(char **envp, t_data *data)
 	data->export_list = NULL;
 }
 
-int		increment_shlvl_in_list(t_token *env_list/* , char **envp_copy */)
+int	increment_shlvl(t_token *env_list)
 {
 	t_token	*env_tmp;
 	int		lvl;
@@ -35,18 +35,13 @@ int		increment_shlvl_in_list(t_token *env_list/* , char **envp_copy */)
 			free(env_tmp->content);
 			env_tmp->content = ft_itoa(lvl);
 			if (!env_tmp->content)
+			{
+				free_token_list(&env_list);
 				return (0);
+			}
 			break ;
 		}
 		env_tmp = env_tmp->next;
 	}
 	return (1);
 }
-
-/* if (!increment_shlvl_in_list(data->env_list))
-{
-	if (data->created_new_env)
-		free_double_ptr(data->envp);
-	free_token_list(&data->env_list);
-	return (0);
-} */

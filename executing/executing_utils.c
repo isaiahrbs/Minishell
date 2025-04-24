@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 20:41:59 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/24 17:05:28 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/24 20:30:26 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,40 +61,41 @@ void	handle_child_status(int status, t_data *data)
 		}
 	}
 }
-int	env_list_into_char_table(t_data *data)
+
+int	count_tokens(t_token *env_tmp)
 {
-	int		i;
-	int		j;
-	int		len_name;
-	int		len_content;
-	t_token	*env_tmp;
+	int	i;
 
 	i = 0;
-	j = 0;
-	env_tmp = data->env_list;
 	while (env_tmp)
 	{
 		i++;
 		env_tmp = env_tmp->next;
 	}
-	data->envp = ft_calloc(i + 1, sizeof(char *));
+	return (i);
+}
+
+int	env_list_into_char_table(t_data *data)
+{
+	int		i;
+	int		len;
+	t_token	*env_tmp;
+
+	env_tmp = data->env_list;
+	data->envp = ft_calloc(count_tokens(env_tmp) + 1, sizeof(char *));
 	if (!data->envp)
 		return (0);
-	env_tmp = data->env_list;
+	i = -1;
 	while (env_tmp)
 	{
-		len_name = ft_strlen(env_tmp->name);
-		len_content = ft_strlen(env_tmp->content);
-		data->envp[j] = ft_calloc(len_name + len_content + 2, sizeof(char));
-		if (!(data->envp[j]))
-		{
-			free_double_ptr(data->envp);
-			return(0);
-		}
-		ft_strncat(data->envp[j], env_tmp->name, len_name);
-		ft_strncat(data->envp[j], "=", 1);
-		ft_strncat(data->envp[j], env_tmp->content, len_content);
-		j++;
+		len = ft_strlen(env_tmp->name) + ft_strlen(env_tmp->content);
+		data->envp[++i] = ft_calloc(len + 2, sizeof(char));
+		if (!(data->envp[i]))
+			return (free_double_ptr(data->envp), 0);
+		ft_strncat(data->envp[i], env_tmp->name, ft_strlen(env_tmp->name));
+		ft_strncat(data->envp[i], "=", 1);
+		ft_strncat
+			(data->envp[i], env_tmp->content, ft_strlen(env_tmp->content));
 		env_tmp = env_tmp->next;
 	}
 	return (1);

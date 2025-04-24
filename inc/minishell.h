@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:40:43 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/24 13:12:47 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/24 20:06:37 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,9 @@
 # define PINK    "\033[95m"
 # define RESET   "\033[0m"
 
-#define TOKEN_NO_QUOTE 0
-#define TOKEN_SQUOTE 1
-#define TOKEN_DQUOTE 2
-
-/* typedef enum s_f
-{
-	WORD,
-	BLANK,
-	COMMAND,
-}	t_f; */
+# define TOKEN_NO_QUOTE 0
+# define TOKEN_SQUOTE 1
+# define TOKEN_DQUOTE 2
 
 typedef enum e_type
 {
@@ -100,7 +93,7 @@ typedef struct s_data
 	t_cmd		*commands;
 	char		*input;
 	char		**envp;
-	//char		**envp_copy;
+	int			fd[2];
 	int			activation_key;
 	t_type		error;
 	int			created_new_env;
@@ -189,9 +182,7 @@ t_cmd	*cmd_new(char *val, int type);
 void	update_token_types(t_data *data);
 void	free_command_list(t_data *data);
 void	*ft_memset(void *s, int c, size_t n);
-//int		/copy_envp(t_data *data);
-int		increment_shlvl_in_list(t_token *env_list/* , char **envp_copy */);
-//int		increment_shlvl_double_char(t_token *env_list, char **envp_copy);
+int		increment_shlvl(t_token *env_list);
 int		ft_atoi(const char *str);
 int		env_list_into_char_table(t_data *data);
 
