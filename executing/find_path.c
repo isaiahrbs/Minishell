@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 01:26:12 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/24 15:27:33 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/24 17:15:56 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,14 @@ int	ft_exec(char *executable, char **cmd, t_data *data)
 	full_path = NULL;
 	full_path = get_path(executable, data);
 	if (!full_path)
+	{
+		free_double_ptr(data->envp);
 		return (0);
+	}
 	execve(full_path, cmd, data->envp);
 	perror("");
 	free(full_path);
 	full_path = NULL;
+	free_double_ptr(data->envp);
 	return (0);
 }

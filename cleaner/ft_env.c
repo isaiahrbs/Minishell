@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 18:05:40 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/24 12:47:07 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/24 17:21:38 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,11 +93,9 @@ int	env_to_token_list(t_data *data)
 	int	i;
 
 	i = 0;
-	data->created_new_env = 0;
 	data->env_list = NULL;
 	if (!getenv("PATH") || !getenv("TERM") || !getenv("PWD"))
 	{
-		data->created_new_env = 1;
 		data->envp = create_env();
 		if (!data->envp)
 			return (0);
@@ -113,7 +111,7 @@ int	env_to_token_list(t_data *data)
 		}
 		i++;
 	}
-	if (/* !copy_envp(data) ||  */!increment_shlvl_in_list(data->env_list/* , data->envp_copy */))
+	if (!increment_shlvl_in_list(data->env_list))
 	{
 		if (data->created_new_env)
 			free_double_ptr(data->envp);

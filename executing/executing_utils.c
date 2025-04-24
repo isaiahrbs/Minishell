@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 20:41:59 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/24 13:13:36 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/24 17:05:28 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ int	env_list_into_char_table(t_data *data)
 			return(0);
 		}
 		ft_strncat(data->envp[j], env_tmp->name, len_name);
-		ft_strncat(data->envp[j], env_tmp->content, len_content);
 		ft_strncat(data->envp[j], "=", 1);
+		ft_strncat(data->envp[j], env_tmp->content, len_content);
 		j++;
 		env_tmp = env_tmp->next;
 	}

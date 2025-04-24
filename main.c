@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 09:47:04 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/24 16:29:31 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/24 17:18:21 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
-
-int	SHELL_LVL;
 
 void	print_command_list(t_cmd *head)
 {
@@ -63,7 +61,7 @@ int	main(int argc, char **argv, char **envp)
 		res = executing(&data);
 		free_end_loop(&data);
 		if (data.exit_request == true)
-			break;
+			break ;
 	}
 	free_end_process(&data);
 	exit_with_code(&data);
