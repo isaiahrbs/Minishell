@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 01:26:12 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/18 00:26:05 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/24 13:15:01 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,12 +92,14 @@ int	ft_exec(char *executable, char **cmd, t_data *data)
 {
 	char	*full_path;
 
-	execve(executable, cmd, data->envp_copy);
+	if (!env_list_into_char_table(data))
+		return (0);
+	execve(executable, cmd, data->envp);
 	full_path = NULL;
 	full_path = get_path(executable, data);
 	if (!full_path)
 		return (0);
-	execve(full_path, cmd, data->envp_copy);
+	execve(full_path, cmd, data->envp);
 	perror("");
 	free(full_path);
 	full_path = NULL;

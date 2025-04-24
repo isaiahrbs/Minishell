@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:40:43 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/22 19:49:54 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/24 13:12:47 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ typedef struct s_data
 	t_cmd		*commands;
 	char		*input;
 	char		**envp;
-	char		**envp_copy;
+	//char		**envp_copy;
 	int			activation_key;
 	t_type		error;
 	int			created_new_env;
@@ -189,10 +189,11 @@ t_cmd	*cmd_new(char *val, int type);
 void	update_token_types(t_data *data);
 void	free_command_list(t_data *data);
 void	*ft_memset(void *s, int c, size_t n);
-int		copy_envp(t_data *data);
-int		increment_shlvl_in_list(t_token *env_list, char **envp_copy);
-int		increment_shlvl_double_char(t_token *env_list, char **envp_copy);
+//int		/copy_envp(t_data *data);
+int		increment_shlvl_in_list(t_token *env_list/* , char **envp_copy */);
+//int		increment_shlvl_double_char(t_token *env_list, char **envp_copy);
 int		ft_atoi(const char *str);
+int		env_list_into_char_table(t_data *data);
 
 //*----minishell----*//
 

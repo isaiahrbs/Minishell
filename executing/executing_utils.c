@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 20:41:59 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/18 00:25:45 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/24 13:13:36 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,42 @@ void	handle_child_status(int status, t_data *data)
 			data->exit_code = 131;
 		}
 	}
+}
+int	env_list_into_char_table(t_data *data)
+{
+	int		i;
+	int		j;
+	int		len_name;
+	int		len_content;
+	t_token	*env_tmp;
+
+	i = 0;
+	j = 0;
+	env_tmp = data->env_list;
+	while (env_tmp)
+	{
+		i++;
+		env_tmp = env_tmp->next;
+	}
+	data->envp = ft_calloc(i + 1, sizeof(char *));
+	if (!data->envp)
+		return (0);
+	env_tmp = data->env_list;
+	while (env_tmp)
+	{
+		len_name = ft_strlen(env_tmp->name);
+		len_content = ft_strlen(env_tmp->content);
+		data->envp[j] = ft_calloc(len_name + len_content + 2, sizeof(char));
+		if (!(data->envp[j]))
+		{
+			free_double_ptr(data->envp);
+			return(0);
+		}
+		ft_strncat(data->envp[j], env_tmp->name, len_name);
+		ft_strncat(data->envp[j], env_tmp->content, len_content);
+		ft_strncat(data->envp[j], "=", 1);
+		j++;
+		env_tmp = env_tmp->next;
+	}
+	return (1);
 }

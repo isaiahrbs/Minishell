@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 09:47:04 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/18 00:27:26 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/24 13:10:00 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@ void	set_var(char **envp, t_data *data)
 {
 	data->envp = envp;
 	data->exit_code = 0;
-	data->envp_copy = NULL;
 	data->temporary_var = NULL;
 }
-
+/*
 int	copy_envp(t_data *data)
 {
 	int		i;
@@ -42,9 +41,9 @@ int	copy_envp(t_data *data)
 		i++;
 	}
 	return (1);
-}
+} */
 
-int		increment_shlvl_in_list(t_token *env_list, char **envp_copy)
+int		increment_shlvl_in_list(t_token *env_list/* , char **envp_copy */)
 {
 	t_token	*env_tmp;
 	int		lvl;
@@ -64,11 +63,11 @@ int		increment_shlvl_in_list(t_token *env_list, char **envp_copy)
 		}
 		env_tmp = env_tmp->next;
 	}
-	if (!increment_shlvl_double_char(env_tmp, envp_copy))
-		return (0);
+/* 	if (!increment_shlvl_double_char(env_tmp, envp_copy))
+		return (0); */
 	return (1);
 }
-
+/*
 int		increment_shlvl_double_char(t_token *shlvl, char **envp_copy)
 {
 	int	i;
@@ -93,4 +92,4 @@ int		increment_shlvl_double_char(t_token *shlvl, char **envp_copy)
 		i++;
 	}
 	return (1);
-}
+} */
