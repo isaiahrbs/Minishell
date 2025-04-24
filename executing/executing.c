@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 19:57:27 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/24 16:26:07 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/24 18:45:57 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	ft_executable(char **executable, char ***cmd, t_data *data)
 		ft_env(data, executable, cmd);
 	if (!strcmp("export", *executable))
 		ft_export(data, executable, cmd);
-	/* if (!strcmp("echo", *executable))
-		ft_echo(executable, cmd, data); */
+	if (!strcmp("echo", *executable))
+		ft_echo(executable, cmd, data);
 	if (!ft_exec(*executable, *cmd, data))
 		ft_free(executable, cmd);
 	if (data->error == MALLOC_ERROR)
