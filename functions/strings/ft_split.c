@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:22:16 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/01 21:04:52 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/24 15:23:45 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,12 @@ static int	get_token_length(const char *s)
 	{
 		if (!is_assign && is_special_char(s[i]) && (i == 0 || s[i - 1] != '\\'))
 			break ;
-		if (s[i] == '"' || s[i] == '\'')
+		/* if (s[i] == '"' || s[i] == '\'')
 		{
 			if (process_quotes(s, &i, s[i]) == -1)
 				return (-1);
 			continue ;
-		}
+		} */
 		i++;
 	}
 	return (i);

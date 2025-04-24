@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:51:22 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/15 18:11:57 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/24 15:40:27 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,26 @@
 
 void	free_token(t_token **temp)
 {
-	if ((*temp)->content)
+	if (!temp)
 	{
-		free((*temp)->content);
-		(*temp)->content = NULL;
+		if ((*temp)->content)
+		{
+			free((*temp)->content);
+			(*temp)->content = NULL;
+		}
+		if ((*temp)->name)
+		{
+			free((*temp)->name);
+			(*temp)->name = NULL;
+		}
+		if ((*temp)->value)
+		{
+			free((*temp)->value);
+			(*temp)->value = NULL;
+		}
+		free(*temp);
+		*temp = NULL;
 	}
-	if ((*temp)->name)
-	{
-		free((*temp)->name);
-		(*temp)->name = NULL;
-	}
-	if ((*temp)->value)
-	{
-		free((*temp)->value);
-		(*temp)->value = NULL;
-	}
-	free(*temp);
-	*temp = NULL;
 }
 
 void	free_token_list(t_token **head)

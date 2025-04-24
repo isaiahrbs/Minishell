@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 01:26:12 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/24 13:15:01 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/24 15:27:33 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,15 @@ void	free_double_ptr(char **args)
 	int	i;
 
 	i = 0;
+	if (!args)
+		return ;
 	while (args[i])
 	{
-		free(args[i]);
-		args[i] = NULL;
+		if (args[i])
+		{
+			free(args[i]);
+			args[i] = NULL;
+		}
 		i++;
 	}
 	free(args);

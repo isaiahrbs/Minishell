@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 09:47:04 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/24 13:10:00 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/24 15:38:53 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	set_var(char **envp, t_data *data)
 	data->envp = envp;
 	data->exit_code = 0;
 	data->temporary_var = NULL;
+	data->export_list = NULL;
 }
 /*
 int	copy_envp(t_data *data)

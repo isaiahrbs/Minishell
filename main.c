@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 09:47:04 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/24 13:13:09 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/24 15:42:39 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ void	free_end_process(t_data *data)
 {
 	free_double_ptr(data->envp);
 	free_token_list(&data->env_list);
-	free_token_list(&data->export_list);
+	if (data->export_list && data->export_list->value)
+		free_token_list(&data->export_list);
 }
 
 int	main(int argc, char **argv, char **envp)
