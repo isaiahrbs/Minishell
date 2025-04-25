@@ -6,22 +6,11 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 20:41:59 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/24 20:30:26 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/25 13:18:11 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
-
-void	ft_free(char **executable, char ***cmd)
-{
-	if (*executable)
-	{
-		free(*executable);
-		*executable = NULL;
-	}
-	if (*cmd)
-		free_double_ptr(*cmd);
-}
 
 int	here_doc(t_cmd **tmp, int *infile, t_data *data)
 {

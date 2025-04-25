@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:40:43 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/24 20:06:37 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/25 13:13:21 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ typedef struct s_token
 	char			*name;
 	char			*content;
 	t_type			type;
-	int				quote_type;//* 0 = none, 1 = single😔, 2 = not single😎
+	int				quote_type;
 	int				index;
 	struct s_token	*next;
 	struct s_token	*prev;

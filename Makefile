@@ -18,7 +18,7 @@ SRCS = lexing/get_input.c lexing/tokenize.c lexing/init_type.c \
 	main.c functions/strings/ft_split.c functions/strings/ft_split_utils.c \
 	functions/strings/check_var.c functions/strings/is_equal.c \
 	cleaner/assignment.c cleaner/expansion.c cleaner/expansion_utils.c \
-	functions/strings/ft_strdup.c functions/linked_lists/free_list.c \
+	functions/strings/ft_strdup.c functions/free_functions.c \
 	functions/linked_lists/free_token_list.c functions/strings/ft_calloc.c \
 	signals/signals.c functions/strings/ft_strjoin.c \
 	cleaner/ft_env.c lexing/set_var.c functions/strings/ft_memset.c\

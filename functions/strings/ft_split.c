@@ -6,13 +6,9 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:22:16 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/24 20:02:03 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/25 13:13:07 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-/* #include <stdlib.h>
-#include <string.h>
-#include <ctype.h> */
 
 #include "../inc/minishell.h"
 
@@ -29,7 +25,8 @@ static int	get_token_length(const char *s)
 		return (get_operator_len(s));
 	while (s[i] && !ft_isspace((unsigned char)s[i]))
 	{
-		if (!is_assign && is_special_char(s[i]) && (i == 0 || s[i - 1] != '\\'))
+		if (!is_assign
+			&& is_special_char(s[i]) && (i == 0 || s[i - 1] != '\\'))
 			break ;
 		i++;
 	}
