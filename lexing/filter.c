@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:10:16 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/22 20:31:18 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/25 14:11:15 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	*quotes_remover(t_token *token, char quote)
 	i = 0;
 	j = 0;
 	str = token->value;
-	result = malloc(ft_strlen(str + 1));
+	result = malloc(ft_strlen(str) + 1);
 	if (!result)
 		return (NULL);
 	while (str[i])

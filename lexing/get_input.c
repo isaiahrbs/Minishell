@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_input.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:39:04 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/24 16:18:40 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/25 14:05:35 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,15 +31,18 @@ char	*get_input(void)
 		exit(EXIT_FAILURE);
 	}
 	string = ft_strjoin(cwd, "🌍~ ");
+	free(cwd);
+	if (!string)
+	{
+		perror("ft_strjoin");
+		exit(EXIT_FAILURE);
+	}
 	input = readline(string);
 	if (!input)
 	{
-		if (string)
-			free(string);
 		printf("exit\n");
 		exit(0);
 	}
 	add_input_history(input);
-	free(string);
 	return (input);
 }
