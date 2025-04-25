@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 09:47:04 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/25 13:45:49 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/25 15:25:33 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argc;
 	(void)argv;
+	ft_memset(&data, 0, sizeof(t_data));
 	set_var(envp, &data);
 	init_signal_handlers();
 	if (!env_to_token_list(&data))
@@ -54,7 +55,7 @@ int	main(int argc, char **argv, char **envp)
 	res = 0;
 	while (!res)
 	{
-		data.input = get_input();
+		data.input = get_input(&data);
 		tokenize(&data);
 		check_if_valid(&data);
 		command_list(&data);

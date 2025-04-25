@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:40:43 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/25 13:13:21 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/25 15:36:21 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -188,7 +188,7 @@ int		env_list_into_char_table(t_data *data);
 
 //*----minishell----*//
 
-char	*get_input(void);
+char	*get_input(t_data *data);
 t_token	*tokenize(t_data *data);
 void	init_signal_handlers(void);
 void	filter(t_token *head);
@@ -213,5 +213,7 @@ void	filter(t_token *token);
 void	exit_handling(t_data *data);
 void	exit_with_code(t_data *data);
 void	grab_exit_code(t_data *data, int status);
+void	free_end_process(t_data *data);
+void	free_end_loop(t_data *data);
 
 #endif
