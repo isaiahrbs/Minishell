@@ -5,20 +5,17 @@ Minishell supports basic shell functionalities including command execution, redi
 
 ---
 
-## 🛠 Features
+## 🛠 **Key Features**  
 
-- **Prompt & input parsing** (with quote and escape handling)
-- **Command execution**
-  - Builtins: `cd`, `echo`, `pwd`, `env`, `export`, `unset`, `exit`
-  - External binaries using `PATH`
-- **Redirections**
-  - Input `<`, output `>`, append `>>`, and heredoc `<<`
-- **Pipes** (`|`) with proper file descriptor handling
-- **Environment variable expansion** (`$VAR`)
-- **Signal handling** (`Ctrl+C`, `Ctrl+\`, etc.)
-- **Exit status management**
-- **Strict Norminette compliance**
-- **No use of `for`, `switch`, or banned functions**
+### 📜 **Commands Implemented**  
+| **Category**       | **Implemented**                                                                 |
+|--------------------|---------------------------------------------------------------------------------|
+| **Builtins**       | `cd`, `echo -n`, `env`, `export`, `pwd`, `unset`, `exit` (with status codes)   |
+| **Redirections**   | `<`, `>`, `>>`, **heredoc** (`<<`) with variable expansion suppression         |
+| **Pipes**          | `|` (multi-pipe support)                                                       |
+| **Variables**      | `$VAR`, `$?` (exit status), `SHLVL` (shell level tracking)                     |
+| **Quotes**         | Full handling of `' '`, `" "`, nested quotes, and edge cases (`"''"`, `'""'`) |
+| **Signals**        | `Ctrl+C` (SIGINT), `Ctrl+\` (SIGQUIT), `Ctrl+D` (EOF)                         |
 
 ---
 
@@ -42,13 +39,22 @@ Minishell supports basic shell functionalities including command execution, redi
 
 ---
 
-## 🧠 How it Works
+## 🧠 **How It Works**  
 
-1. **Get Input**: A prompt is displayed and user input is read using `readline`.
-2. **Lexing**: The input is split into tokens while respecting quotes and special characters.
-3. **Parsing**: Tokens are parsed into executable commands with proper structure.
-4. **Execution**: Commands are executed, handling redirections, pipes, and environment.
-5. **Cleanup**: Memory is freed and the shell waits for the next command.
+1. **Input**: Displays a prompt and reads user input using `readline` (supports history navigation).  
+2. **Lexing**: Splits input into tokens while handling:  
+   - Quotes (`'...'`, `"..."`) and escapes (`\`).  
+   - **Environment variables** (`$VAR`).  
+   - **Metacharacters** (`|`, `>`, `<`, etc.).  
+3. **Parsing**:  
+   - **Creates a token list** from lexed input.  
+   - **Merges tokens into commands** by splitting on metacharacters (e.g., `ls -l | grep test` → 2 commands).  
+   - Builds an executable structure (AST) with redirections/pipes.  
+4. **Execution**:  
+   - Runs builtins directly (e.g., `cd`, `export`).  
+   - Executes external binaries via `PATH` (e.g., `/bin/ls`).  
+   - Handles pipes/redirections with `dup2` and `fork`.  
+5. **Cleanup**: Frees memory, resets file descriptors, waits for next input.  
 
 ---
 
@@ -86,24 +92,12 @@ Once launched, you can start typing commands like:
 
 ```bash
 > echo Hello World
-> ls -la | grep minishell
-> VAR=test ./script.sh
+> ls -la | grep Minishell
+> export var=test
 > cat << EOF
 heredoc content
 EOF
 ```
-
----
-
-## 🧪 Testing
-
-Use your own test scripts or command sequences. Some suggestions:
-- Complex pipes and redirections
-- Builtin behavior with edge cases
-- Variable expansion inside quotes
-- Heredocs with variable suppression (`<<` vs `<<'EOF'`)
-
----
 
 ## 👨‍💻 Authors
 
