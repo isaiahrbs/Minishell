@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/16 14:39:02 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/17 21:00:27 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/04/26 09:27:36 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	handle_sigint_child(int sig)
 {
 	(void)sig;
 	write(1, "\n", 1);
-	write(1, "Ctrl+C received\n", 17);
 	rl_done = 1;
 	rl_replace_line("", 0);
 	rl_on_new_line();

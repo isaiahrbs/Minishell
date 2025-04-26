@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_path.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 01:26:12 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/24 17:15:56 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/25 21:39:54 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

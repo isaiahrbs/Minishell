@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 09:50:37 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/14 15:14:00 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/26 09:18:53 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,6 @@ int	expand_to_heredoc(char **line, t_data *data)
 		return (1);
 	while (*line[i])
 	{
-		if (!ft_strncmp(*line, "$?\0", 3))
-		{
-			free(*line);
-			*line = ft_itoa(data->exit_code);
-			if (!*line)
-				return (0);
-		}
 		var_start = is_var(&(*line)[i], &i);
 		if (var_start && !scan_var_list(data->env_list, line, var_start, data))
 			return (0);
@@ -76,4 +69,5 @@ void	handle_heredoc(char *delimiter, int *infile, t_data *data)
 	}
 	close(pipefd[1]);
 	*infile = pipefd[0];
+	exit (1);
 }
