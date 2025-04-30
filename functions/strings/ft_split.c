@@ -3,19 +3,57 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:22:16 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/25 13:13:07 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/04/30 14:08:44 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
+static int	handle_quotes(const char *s, int *i)
+{
+	char	quote;
+	int		start;
+
+	start = *i;
+	quote = s[(*i)++];
+	while (s[*i] && s[*i] != quote)
+		(*i)++;
+	if (s[*i] != quote)
+		return (-1);
+	(*i)++;
+	return (*i - start);
+}
+
+static int	handle_word(const char *s, int is_assign)
+{
+	int		i;
+	int		tmp;
+
+	i = 0;
+	while (s[i] && !ft_isspace((unsigned char)s[i]))
+	{
+		if (!is_assign && is_special_char(s[i])
+			&& (i == 0 || s[i - 1] != '\\'))
+			break ;
+		if (s[i] == '\'' || s[i] == '"')
+		{
+			tmp = handle_quotes(s, &i);
+			if (tmp == -1)
+				return (-1);
+		}
+		else
+			i++;
+	}
+	return (i);
+}
+
 static int	get_token_length(const char *s)
 {
-	int	i;
-	int	is_assign;
+	int		i;
+	int		is_assign;
 
 	i = 0;
 	if (!s[i])
@@ -23,14 +61,9 @@ static int	get_token_length(const char *s)
 	is_assign = check_assignment(s);
 	if (is_special_char(s[0]) && !is_assign)
 		return (get_operator_len(s));
-	while (s[i] && !ft_isspace((unsigned char)s[i]))
-	{
-		if (!is_assign
-			&& is_special_char(s[i]) && (i == 0 || s[i - 1] != '\\'))
-			break ;
-		i++;
-	}
-	return (i);
+	if (s[i] == '\'' || s[i] == '"')
+		return (handle_quotes(s, &i));
+	return (handle_word(s, is_assign));
 }
 
 static int	count_tokens_in_str(const char *s)
