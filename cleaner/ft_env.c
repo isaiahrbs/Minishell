@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 18:05:40 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/04/24 20:24:34 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/05/02 08:22:52 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int	env_to_token_list(t_data *data)
 		data->envp = create_env();
 		if (!data->envp)
 			return (0);
+		data->created_new_env = 1;
 	}
 	while (data->envp[i])
 	{
@@ -112,7 +113,14 @@ int	env_to_token_list(t_data *data)
 		i++;
 	}
 	if (!increment_shlvl(data->env_list))
+	{
+		if (data->created_new_env)
+			free_double_ptr(data->envp);
+		free_token_list(&data->env_list);
 		return (0);
+	}
+	if (data->created_new_env)
+		free_double_ptr(data->envp);
 	data->envp = NULL;
 	return (1);
 }
