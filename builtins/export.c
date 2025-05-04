@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: isaiah <isaiah@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 19:44:49 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/15 19:25:43 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/05/04 12:09:02 by isaiah           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_token	*copy_list(t_token *original)
 void	print_line(t_data *data)
 {
 		printf("declare -x ");
-		printf("%s-", data->export_list->name);
+		printf("%s", data->export_list->name);
 		printf("=\"%s\"\n", data->export_list->content);
 }
 
