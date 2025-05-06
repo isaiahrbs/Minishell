@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 09:50:37 by irobinso          #+#    #+#             */
-/*   Updated: 2025/05/06 15:55:43 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/05/06 16:03:21 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,4 @@ void	handle_heredoc(char *delimiter, int *infile, t_data *data)
 	}
 	close(pipefd[1]);
 	*infile = pipefd[0];
-	//exit (1);
 }

@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:40:43 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/05/06 15:58:28 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/05/06 16:03:50 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,8 +189,6 @@ int		free_dbl_ptr_and_tkn_list(t_data *data);
 int		handle_quotes(const char *s, int *i);
 int		handle_word(const char *s, int is_assign);
 int		get_token_length(const char *s);
-
-
 
 //*----minishell----*//
 
