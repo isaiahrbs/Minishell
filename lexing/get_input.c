@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_input.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:39:04 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/25 15:17:41 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/05/06 15:54:09 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ void	free_shit(t_data *data)
 	free_end_process(data);
 }
 
+void	error_exit(void)
+{
+	perror("ft_strjoin");
+	exit(EXIT_FAILURE);
+}
+
 char	*get_input(t_data *data)
 {
 	char	*input;
@@ -32,17 +38,11 @@ char	*get_input(t_data *data)
 
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
-	{
-		perror("getcwd");
-		exit(EXIT_FAILURE);
-	}
+		error_exit();
 	string = ft_strjoin(cwd, "🌍~ ");
 	free(cwd);
 	if (!string)
-	{
-		perror("ft_strjoin");
-		exit(EXIT_FAILURE);
-	}
+		error_exit();
 	input = readline(string);
 	free(string);
 	if (!input)

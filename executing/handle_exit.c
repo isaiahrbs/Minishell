@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/18 16:40:26 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/24 18:45:20 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/05/06 15:50:00 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int	is_numeric(const char *str)
 {
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	if (!str || !str[0])
 		return (0);
 	if (str[i] == '+' || str[i] == '-')
@@ -29,22 +30,23 @@ int	is_numeric(const char *str)
 	return (1);
 }
 
-
 void	grab_exit_code(t_data *data, int status)
 {
-		if (WIFEXITED(status))
-		{
-			data->exit_code = WEXITSTATUS(status);
-		}
-		else if (WIFSIGNALED(status))
-		{
-			int sig = WTERMSIG(status);
-			if (sig == SIGINT)
-				write(1, "\n", 1);
-			else if (sig == SIGQUIT)
-				write(1, "Quit (core dumped)\n", 19);
-			data->exit_code = 128 + sig;
-		}
+	int	sig;
+
+	if (WIFEXITED(status))
+	{
+		data->exit_code = WEXITSTATUS(status);
+	}
+	else if (WIFSIGNALED(status))
+	{
+		sig = WTERMSIG(status);
+		if (sig == SIGINT)
+			write(1, "\n", 1);
+		else if (sig == SIGQUIT)
+			write(1, "Quit (core dumped)\n", 19);
+		data->exit_code = 128 + sig;
+	}
 }
 
 void	exit_with_code(t_data *data)
