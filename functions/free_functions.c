@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 11:38:03 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/25 13:19:38 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/05/06 15:45:48 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,12 @@ void	ft_free(char **executable, char ***cmd)
 	}
 	if (*cmd)
 		free_double_ptr(*cmd);
+}
+
+int	free_dbl_ptr_and_tkn_list(t_data *data)
+{
+	if (data->created_new_env)
+		free_double_ptr(data->envp);
+	free_token_list(&data->env_list);
+	return (0);
 }

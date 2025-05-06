@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: isaiah <isaiah@student.42.fr>              +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 19:44:49 by irobinso          #+#    #+#             */
-/*   Updated: 2025/05/04 12:09:02 by isaiah           ###   ########.fr       */
+/*   Updated: 2025/05/06 15:42:09 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ t_token	*copy_list(t_token *original)
 
 void	print_line(t_data *data)
 {
-		printf("declare -x ");
-		printf("%s", data->export_list->name);
-		printf("=\"%s\"\n", data->export_list->content);
+	printf("declare -x ");
+	printf("%s", data->export_list->name);
+	printf("=\"%s\"\n", data->export_list->content);
 }
 
 void	ft_export(t_data *data, char **executable, char ***cmd)
@@ -84,18 +84,20 @@ void	ft_export(t_data *data, char **executable, char ***cmd)
 
 	current = data->commands;
 	if (!current || !current->value)
-		return;
-	if (!ft_strncmp(current->value, "export", 6) &&
-		(!current->next || current->next->type == PIPE || current->next->type == REDIRECT_OUT))
+		return ;
+	if (!ft_strncmp(current->value, "export", 6)
+		&& (!current->next || current->next->type == PIPE
+			|| current->next->type == REDIRECT_OUT))
 	{
 		data->export_list = copy_list(data->env_list);
 		if (!data->export_list)
 		{
 			printf("export: failed to copy environment list\n");
-			return;
+			return ;
 		}
 		bubble_sort_token_list(data->export_list);
-		while (data->export_list && data->export_list->name && data->export_list->content)
+		while (data->export_list && data->export_list->name
+			&& data->export_list->content)
 		{
 			print_line(data);
 			data->export_list = data->export_list->next;

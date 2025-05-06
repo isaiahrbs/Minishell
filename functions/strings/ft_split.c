@@ -3,29 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 18:22:16 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/05/06 15:51:32 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/05/06 15:58:09 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
-
-static int	handle_quotes(const char *s, int *i)
-{
-	char	quote;
-	int		start;
-
-	start = *i;
-	quote = s[(*i)++];
-	while (s[*i] && s[*i] != quote)
-		(*i)++;
-	if (s[*i] != quote)
-		return (-1);
-	(*i)++;
-	return (*i - start);
-}
 
 static int	count_tokens_in_str(const char *s)
 {

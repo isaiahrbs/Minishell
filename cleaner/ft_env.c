@@ -6,7 +6,7 @@
 /*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 18:05:40 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/05/02 08:22:52 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/05/06 15:48:57 by dimatayi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,21 +104,11 @@ int	env_to_token_list(t_data *data)
 	while (data->envp[i])
 	{
 		if (!ft_assign(data->envp[i], &data->env_list))
-		{
-			if (data->created_new_env)
-				free_double_ptr(data->envp);
-			free_token_list(&data->env_list);
-			return (0);
-		}
+			return (free_dbl_ptr_and_tkn_list(data));
 		i++;
 	}
 	if (!increment_shlvl(data->env_list))
-	{
-		if (data->created_new_env)
-			free_double_ptr(data->envp);
-		free_token_list(&data->env_list);
-		return (0);
-	}
+		return (free_dbl_ptr_and_tkn_list(data));
 	if (data->created_new_env)
 		free_double_ptr(data->envp);
 	data->envp = NULL;
