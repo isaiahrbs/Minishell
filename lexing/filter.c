@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 13:10:16 by irobinso          #+#    #+#             */
-/*   Updated: 2025/05/06 15:52:39 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/05/13 20:53:08 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ void	remove_quotes(t_token *token)
 
 void	filter(t_token *token)
 {
+	if (ft_strncmp(token->value, "export", 6) == 0)
+		return ;
 	while (token)
 	{
 		remove_quotes(token);
