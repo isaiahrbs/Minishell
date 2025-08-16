@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dimatayi <dimatayi@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 12:40:43 by dimatayi          #+#    #+#             */
-/*   Updated: 2025/05/06 16:03:50 by dimatayi         ###   ########.fr       */
+/*   Updated: 2025/08/16 08:43:35 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,5 +222,6 @@ void	free_end_loop(t_data *data);
 void	change_env_list(t_data *data, char *replace_str, char *oldpwd);
 int		handle_word(const char *s, int is_assign);
 int		get_token_length(const char *s);
+char	*clean_input(char *s);
 
 #endif

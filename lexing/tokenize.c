@@ -6,7 +6,7 @@
 /*   By: irobinso <irobinso@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/20 10:43:37 by irobinso          #+#    #+#             */
-/*   Updated: 2025/04/26 09:45:04 by irobinso         ###   ########.fr       */
+/*   Updated: 2025/08/16 08:43:19 by irobinso         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,13 @@ int	ft_variable(t_data *data)
 t_token	*tokenize(t_data *data)
 {
 	char	**token_list;
+	char	*cleaned_input;
 
 	data->token = NULL;
-	token_list = metachar_split(data->input);
+	cleaned_input = clean_input(data->input);
+	token_list = metachar_split(cleaned_input);
+	if (cleaned_input)
+		free(cleaned_input);
 	free(data->input);
 	if (!token_list)
 		return (NULL);
