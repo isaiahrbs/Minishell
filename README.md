@@ -66,6 +66,14 @@ Minishell supports basic shell functionalities including command execution, redi
 
 ---
 
+## 📌 Prerequisite: install the Readline library
+
+```bash
+sudo apt update
+sudo apt install libreadline-dev
+
+```
+
 ## 📦 Compilation
 
 ```bash
